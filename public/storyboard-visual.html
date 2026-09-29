@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storyboard Visual Multimedia Pembelajaran Interaktif - Sistem Operasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0284c7;
+  --primary-dark: #0369a1;
+  --bg-page: #f8fafc;
+  --card-bg: #ffffff;
+  --border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --wireframe-bg: #0f172a;
+  --wireframe-border: #334155;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 24px;
+}
+
+.top-bar {
+  max-width: 1000px;
+  margin: 0 auto 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.top-bar h1 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0369a1;
+}
+
+.top-bar .meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.btn-print {
+  background: #0284c7;
+  color: #fff;
+  border: 0;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-print:hover { background: #0369a1; transform: translateY(-1px); }
+
+/* Frame Sheet: Satu Halaman Per Frame */
+.frame-sheet {
+  max-width: 1000px;
+  margin: 0 auto 36px;
+  background: var(--card-bg);
+  border: 2px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.06);
+  page-break-after: always;
+  break-after: page;
+}
+
+.frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.frame-badge {
+  background: #0284c7;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+}
+
+.frame-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.frame-target {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+/* WIREFRAME SECTION */
+.wireframe-box {
+  background: var(--wireframe-bg);
+  border: 3px solid #1e293b;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 22px;
+  color: #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.wireframe-title-tag {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: rgba(2, 132, 199, 0.25);
+  color: #38bdf8;
+  border: 1px solid #0284c7;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Wireframe Elements */
+.wf-mockup {
+  border: 1.5px dashed #475569;
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.7);
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.wf-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1e293b;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #334155;
+  font-size: 0.75rem;
+}
+
+.wf-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.wf-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.wf-btn {
+  display: inline-block;
+  background: #0284c7;
+  color: #fff;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.wf-sub {
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+/* SPECIFICATIONS TABLE */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .spec-grid { grid-template-columns: 1fr; }
+}
+
+.spec-cell {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.spec-cell.full-width {
+  grid-column: 1 / -1;
+}
+
+.spec-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.spec-title.visual { color: #0284c7; }
+.spec-title.audio { color: #7c3aed; }
+.spec-title.interact { color: #d97706; }
+.spec-title.transition { color: #059669; }
+
+.spec-content {
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.spec-content ul {
+  padding-left: 18px;
+  margin-top: 4px;
+}
+
+.spec-content li {
+  margin-bottom: 4px;
+}
+
+.spec-content strong {
+  color: #0f172a;
+}
+
+.audio-box {
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  color: #4c1d95;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* Print CSS */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+  .top-bar { display: none !important; }
+  .frame-sheet {
+    box-shadow: none;
+    border: 1.5px solid #000;
+    border-radius: 0;
+    margin: 0;
+    padding: 20px;
+    page-break-after: always !important;
+    break-after: page !important;
+    min-height: 100vh;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <h1>🎬 DOKUMEN STORYBOARD VISUAL (ONE PAGE PER FRAME)</h1>
+    <div class="meta">Mata Kuliah: Multimedia Pembelajaran | Topik: Media Pembelajaran Interaktif Sistem Operasi</div>
+  </div>
+  <button class="btn-print" onclick="window.print()">🖨️ Cetak / Simpan PDF (1 Halaman/Frame)</button>
+</div>
+
+<!-- ========================================== -->
+<!-- FRAME 01: WELCOME SCREEN & HEADER          -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 01</span>
+      <h2 class="frame-title">Beranda & Sambutan Suara (Welcome Screen)</h2>
+    </div>
+    <span class="frame-target">Durasi: ~10 Detik / Awal Sesi</span>
+  </div>
+
+  <!-- Sketsa Layar (Wireframe) -->
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <!-- Navbar -->
+      <div class="wf-bar">
+        <div style="font-weight:700; color:#38bdf8;">🖥️ MPI-OS | Sistem Operasi</div>
+        <div style="display:flex; gap:8px;">
+          <span style="color:#94a3b8;">[Modul 1]</span>
+          <span style="color:#94a3b8;">[Modul 2]</span>
+          <span style="color:#94a3b8;">[Modul 3]</span>
+          <span style="color:#94a3b8;">[Modul 4]</span>
+          <span style="color:#94a3b8;">[Modul 5]</span>
+          <span style="color:#f59e0b; font-weight:700;">[Kuis 🎯]</span>
+        </div>
+      </div>
+      <!-- Hero Welcome Banner -->
+      <div style="background:#1e293b; border:1px solid #38bdf8; border-radius:10px; padding:20px; text-align:center; margin:14px 0;">
+        <div style="font-size:1.5rem; margin-bottom:6px;">🚀</div>
+        <div style="font-size:0.95rem; font-weight:700; color:#38bdf8;">"SELAMAT DATANG PARA PENAKLUK TEKNOLOGI!"</div>
+        <div class="wf-sub" style="margin:6px auto 14px; max-width:500px;">Jelajahi keajaiban di balik layar komputer: bagaimana sistem operasi mengelola miliaran instruksi, memori, dan perangkat secara harmonis!</div>
+        <div style="display:flex; justify-content:center; gap:10px;">
+          <span class="wf-btn">▶ Mulai Petualangan Belajar</span>
+          <span class="wf-btn" style="background:#475569;">🎧 Putar Ulang Sambutan Suara</span>
+        </div>
+      </div>
+      <!-- Quick Feature Cards -->
+      <div class="wf-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="wf-card" style="text-align:center;">📚 5 Modul Teori Lengkap</div>
+        <div class="wf-card" style="text-align:center;">🎬 4 Video Simulasi + Narasi</div>
+        <div class="wf-card" style="text-align:center;">🏆 Kuis Interaktif + QR Pengayaan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spesifikasi Storyboard -->
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Layout:</strong> Full viewport responsif dengan latar belakang warna gelap futuristik (*Slate 900*).</li>
+          <li><strong>Header:</strong> Logo interaktif di kiri, navigasi 5 Modul dan 1 menu Kuis di kanan.</li>
+          <li><strong>Hero Area:</strong> Kartu ucapan selamat datang bergradien biru elektrik (*Brand Sky 500*), teks display tebal, dan tombol CTA utama *Mulai Belajar*.</li>
+          <li><strong>Maskot Bot:</strong> Ikon Byte-Bot memberikan sapaan ramah di pojok kanan bawah.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Voiceover Pembuka (Web Speech API):</strong>
+            <div class="audio-box">"Selamat datang para penakluk teknologi!"</div>
+          </li>
+          <li><strong>BGM:</strong> Musik latar ambient teknologi bertempo riang dengan volume lembut (20%).</li>
+          <li><strong>SFX:</strong> Efek nada *chime* saat tombol navigasi disentuh / diklik.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Klik tombol <strong>Mulai Belajar</strong> menggeser layar (*smooth scroll*) langsung ke Modul 1.</li>
+          <li>Klik tombol <strong>Putar Sambutan</strong> mengeksekusi ulang suara ucapan selamat datang.</li>
+          <li>Navigasi menu atas melompat ke modul pilihan pengguna secara instan.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Masuk:</strong> *Fade In* elemen UI (durasi 400ms) saat aplikasi selesai dimuat.</li>
+          <li><strong>Keluar:</strong> Animasi geser ke bawah (*Slide Down*) menuju Scene Modul 1.</li>
+          <li><strong>Pemicu:</strong> Klik tombol *Mulai Belajar* atau *Scroll Wheel* mouse.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 02: MODUL 1 - KONSEP DASAR OS        -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 02</span>
+      <h2 class="frame-title">Modul 1: Konsep & Hakikat Sistem Operasi</h2>
+    </div>
+    <span class="frame-target">Estimasi Baca: 3 - 5 Menit</span>
+  </div>
+
+  <!-- Sketsa Layar (Wireframe) -->
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar">
+        <span>📖 MODUL 1: HAKIKAT & PERAN SISTEM OPERASI</span>
+        <span style="color:#38bdf8;">1 / 5 Modul</span>
+      </div>
+      <div class="wf-grid" style="grid-template-columns: 1fr 1fr; margin-top:8px;">
+        <!-- Left: Analogi & Definisi -->
+        <div class="wf-card">
+          <div style="font-weight:700; color:#38bdf8; margin-bottom:4px;">🎼 Analogi Konduktor Musik</div>
+          <div class="wf-sub">OS ibarat pemimpin orkestra yang mengatur pemain biola (CPU), drum (RAM), dan terompet (Storage) agar menghasilkan alunan musik yang harmonis tanpa tabrakan nada.</div>
+          <div style="margin-top:10px; padding:6px; background:#0f172a; border-radius:6px; font-size:0.68rem;">
+            <strong>3 Peran Utama:</strong><br>
+            1. Resource Manager (Pengelola Hardware)<br>
+            2. Extended Machine (Penyedia System Call)<br>
+            3. Protection Barrier (Pelindung Keamanan)
+          </div>
+        </div>
+        <!-- Right: Diagram Lapisan Sistem -->
+        <div class="wf-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-weight:700; color:#f59e0b; margin-bottom:4px;">🏛️ Diagram Arsitektur Lapisan</div>
+          <div style="text-align:center; padding:4px; background:#0284c7; color:#fff; border-radius:4px; margin-bottom:2px;">👤 PENGGUNA (USER)</div>
+          <div style="text-align:center; padding:4px; background:#0369a1; color:#fff; border-radius:4px; margin-bottom:2px;">📱 PROGRAM APLIKASI (Word, Game, Chrome)</div>
+          <div style="text-align:center; padding:6px; background:#d97706; color:#fff; font-weight:700; border-radius:4px; margin-bottom:2px; border:1px solid #fbbf24;">⚡ SISTEM OPERASI (Windows, Linux, macOS, Android)</div>
+          <div style="text-align:center; padding:4px; background:#334155; color:#fff; border-radius:4px;">🖥️ HARDWARE (CPU, RAM, Harddisk, GPU)</div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-top:12px;">
+        <span class="wf-btn" style="background:#475569;">⏮ Kembali ke Beranda</span>
+        <span class="wf-btn">Lanjut ke Modul 2: Karakteristik OS ⏭</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Tata Letak:</strong> Model 2 kolom (*Two Column Card*).</li>
+          <li><strong>Kolom Kiri:</strong> Teks definisi, kartu analogi konduktor musik bergambar alat musik interaktif.</li>
+          <li><strong>Kolom Kanan:</strong> Diagram hierarki piramida tumpukan (*Layered Stack Architecture*).</li>
+          <li><strong>Tipografi:</strong> Huruf tebal dengan sorotan warna kuning emas pada istilah kunci (*Resource Allocator*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX:</strong> Efek transisi kartu (*soft swoosh*) saat diagram disentuh kursor.</li>
+          <li><strong>Audio Opsional:</strong> Narasi pembaca teks jika pengguna menekan ikon mikrofon edukasi.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Arahkan kursor (*Hover*) pada diagram lapisan untuk menyorot aliran arus data dari Pengguna ke Hardware.</li>
+          <li>Tombol navigasi bawah membawa pengguna melangkah maju ke Modul 2 atau kembali ke Beranda.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Masuk:</strong> *Slide In* dari bawah dengan efek *staggered cards*.</li>
+          <li><strong>Keluar:</strong> Geser halus ke kiri saat tombol *Modul 2* ditekan.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 03: MODUL 2 - 4 PILAR KARAKTERISTIK  -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 03</span>
+      <h2 class="frame-title">Modul 2: Empat Pilar Karakteristik Sistem Operasi</h2>
+    </div>
+    <span class="frame-target">Hub Navigasi Simulator</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar">
+        <span>⚙️ MODUL 2: 4 KARAKTERISTIK UTAMA SISTEM OPERASI</span>
+        <span style="color:#38bdf8;">Pilih Simulasi untuk Membuka Video Lab</span>
+      </div>
+      <div class="wf-grid" style="grid-template-columns: repeat(4, 1fr); margin-top:8px;">
+        <!-- Pilar 1 -->
+        <div class="wf-card" style="border-top:3px solid #38bdf8;">
+          <div style="font-size:1.2rem;">🔀</div>
+          <div style="font-weight:700; color:#38bdf8;">1. Concurrency</div>
+          <div class="wf-sub" style="margin:4px 0 10px;">Menjalankan banyak proses dalam irisan waktu sangat cepat (Time-Slicing).</div>
+          <span class="wf-btn" style="width:100%;">🎬 Tonton Simulasi 1</span>
+        </div>
+        <!-- Pilar 2 -->
+        <div class="wf-card" style="border-top:3px solid #f59e0b;">
+          <div style="font-size:1.2rem;">🤝</div>
+          <div style="font-weight:700; color:#f59e0b;">2. Resource Sharing</div>
+          <div class="wf-sub" style="margin:4px 0 10px;">Banyak user/aplikasi berbagi satu perangkat secara tertib (Spooling).</div>
+          <span class="wf-btn" style="width:100%; background:#d97706;">🎬 Tonton Simulasi 2</span>
+        </div>
+        <!-- Pilar 3 -->
+        <div class="wf-card" style="border-top:3px solid #a855f7;">
+          <div style="font-size:1.2rem;">🔮</div>
+          <div style="font-weight:700; color:#a855f7;">3. Virtualization</div>
+          <div class="wf-sub" style="margin:4px 0 10px;">Menyembunyikan batasan fisik hardware lewat memori virtual & swap file.</div>
+          <span class="wf-btn" style="width:100%; background:#9333ea;">🎬 Tonton Simulasi 3</span>
+        </div>
+        <!-- Pilar 4 -->
+        <div class="wf-card" style="border-top:3px solid #10b981;">
+          <div style="font-size:1.2rem;">⚡</div>
+          <div style="font-weight:700; color:#10b981;">4. Asynchrony</div>
+          <div class="wf-sub" style="margin:4px 0 10px;">Merespons interupsi mendadak (mouse/keyboard) tanpa membekukan layar.</div>
+          <span class="wf-btn" style="width:100%; background:#059669;">🎬 Tonton Simulasi 4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Grid 4 Kolom:</strong> Masing-masing mewakili satu pilar karakteristik OS dengan kode warna tematik (Biru, Kuning, Ungu, Hijau).</li>
+          <li><strong>Komponen Kartu:</strong> Ikon 3D transparan, judul pilar, teks ringkasan, contoh analogi, dan tombol *Call to Action* bertuliskan *"Tonton Video Simulasi ... 🎬"*.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX Tombol:</strong> Suara klik tegas (*pop sound*) saat memilih salah satu simulator.</li>
+          <li><strong>BGM:</strong> Musik pengiring lembut menjaga konsentrasi belajar.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Setiap kartu memiliki efek melayang (*hover bounce & shadow lift*).</li>
+          <li>Menekan tombol kartu membuka jendela modal simulator interaktif yang relevan.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Membuka Modal:</strong> Animasi *Zoom In & Backdrop Blur* (300ms) menggelapkan latar belakang dan memusatkan layar ke simulator.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 04: SIMULASI 1 - CONCURRENCY         -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 04</span>
+      <h2 class="frame-title">Simulasi 1: Concurrency (Multitasking Sehari Bersama Bayu)</h2>
+    </div>
+    <span class="frame-target">Durasi Video: ~32.2 Detik</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">SIMULATOR SVG MODAL 800x450</div>
+    <div class="wf-mockup">
+      <!-- Top Monitor Panel -->
+      <div class="wf-bar" style="background:#0284c7; color:#fff;">
+        <span>🎬 SIMULASI 1: MULTITASKING & TIME-SLICING</span>
+        <span style="font-size:0.65rem;">CPU Core #0 Monitor (Time-Slice: 10ms)</span>
+      </div>
+      <!-- SVG Stage Mockup -->
+      <div style="background:#dfefff; border-radius:8px; padding:12px; color:#0f172a; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <!-- Bayu & Desk -->
+          <div style="border:1px dashed #0284c7; padding:8px; border-radius:6px; width:35%;">
+            🧑‍💻 <strong>Karakter Bayu</strong><br>
+            <span class="wf-sub" style="color:#0369a1;">• Mengetik Word (tangan bergetar)<br>• Mendengar Spotify (headphone aktif)<br>• Jurnal download (browser)</span>
+          </div>
+          <!-- CPU Monitor Box -->
+          <div style="background:#0f172a; color:#fff; padding:8px; border-radius:6px; width:60%;">
+            🧠 <strong>CPU 1-Core Time-Slicing:</strong><br>
+            <div style="display:flex; gap:4px; margin-top:4px;">
+              <span style="background:#2b7fff; padding:2px 6px; border-radius:4px; font-size:0.6rem;">Word</span>
+              <span style="background:#1db954; padding:2px 6px; border-radius:4px; font-size:0.6rem;">Spotify</span>
+              <span style="background:#ff8a3d; padding:2px 6px; border-radius:4px; font-size:0.6rem;">Browser</span>
+            </div>
+            <div class="wf-sub" style="color:#94a3b8; margin-top:4px;">Irisan waktu berputar bergantian tiap milidetik!</div>
+          </div>
+        </div>
+      </div>
+      <!-- Dynamic Caption -->
+      <div style="background:#1e293b; border-left:4px solid #38bdf8; padding:8px 12px; font-size:0.75rem; color:#e2e8f0; margin-bottom:8px;">
+        💬 <em>"Di balik layar: CPU hanya punya 1 core! OS membagi waktu CPU (time slicing) secara bergiliran dalam milidetik."</em>
+      </div>
+      <!-- Controls -->
+      <div class="wf-bar">
+        <div style="display:flex; gap:6px;">
+          <span class="wf-btn">⏸ Jeda</span>
+          <span class="wf-btn" style="background:#475569;">↺ Ulang</span>
+          <span class="wf-btn" style="background:#475569;">🔊 Suara: Nyala</span>
+        </div>
+        <div style="flex:1; margin:0 10px; background:#475569; height:6px; border-radius:3px;">
+          <div style="background:#38bdf8; width:60%; height:100%; border-radius:3px;"></div>
+        </div>
+        <span>18 / 32 dtk</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Panggung SVG:</strong> Latar biru muda (*#dfefff*) dengan meja belajar kayu dan laptop modern.</li>
+          <li><strong>Animasi Objek:</strong> Karakter Bayu mengetik dinamis, equalizer audio Spotify memantul, bar persentase unduhan bergerak dari 0% ke 100%.</li>
+          <li><strong>Kotak CPU:</strong> Menampilkan balok-balok warna berganti secara cepat (*time slicing visualizer*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>File Suara:</strong> [**`/suara/video1.mp4`**](file:///d:/KULIAH/SEMESTER%205/MULTIMEDIA%20PEMBELAJARAN/UTS/public/suara/video1.mp4) (Durasi 32.2 Detik).</li>
+          <li><strong>Naskah Narasi:</strong>
+            <div class="audio-box">"Kenalkan Bayu, mahasiswa yang punya tiga urusan sekaligus... Di balik layar: CPU hanya punya 1 core! OS membagi waktu CPU secara bergiliran. Itulah Concurrency!"</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Tombol <strong>Play / Pause</strong> mengontrol animasi dan audio serempak.</li>
+          <li>Menggeser <strong>Slider Scrubber</strong> menggeser waktu video dan posisi suara secara presisi.</li>
+          <li>Tombol <strong>Mute</strong> mematikan/menyalakan vokal suara narator.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Teks takarir berganti halus (*cross-fade*) mengikuti cap waktu audio.</li>
+          <li>Tombol silang pojok kanan atas menutup modal dan menghentikan audio.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 05: SIMULASI 2 - RESOURCE SHARING    -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 05</span>
+      <h2 class="frame-title">Simulasi 2: Resource Sharing (Berbagi Printer di Lab)</h2>
+    </div>
+    <span class="frame-target">Durasi Video: ~51.5 Detik</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">SIMULATOR SVG MODAL 800x450</div>
+    <div class="wf-mockup">
+      <div class="wf-bar" style="background:#d97706; color:#fff;">
+        <span>🎬 SIMULASI 2: RESOURCE SHARING & PRINT SPOOLER</span>
+        <span style="font-size:0.65rem;">Antrean Cetak FIFO (First-In, First-Out)</span>
+      </div>
+      <div style="background:#fdf3dc; border-radius:8px; padding:12px; color:#0f172a; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <!-- 10 Laptops -->
+          <div style="width:35%; border:1px dashed #d97706; padding:6px; border-radius:6px; font-size:0.65rem;">
+            💻 <strong>10 Laptop Siswa (Lab LAN)</strong><br>
+            Mhs 1: 📤 Kirim Dokumen...<br>
+            Mhs 2: ⏳ Menunggu...<br>
+            Mhs 3: ✅ Selesai
+          </div>
+          <!-- Network Switch -->
+          <div style="text-align:center; font-size:0.7rem; font-weight:700;">
+            🌐 LAN Switch<br>
+            <span style="color:#0284c7;">━━━ Paket Data ━━━▶</span>
+          </div>
+          <!-- Spooler Queue & Printer -->
+          <div style="width:35%; background:#fff; border:1px solid #d97706; padding:6px; border-radius:6px; font-size:0.65rem;">
+            📋 <strong>OS Spooler Queue:</strong><br>
+            1. Mhs 1 (Sedang Cetak)<br>
+            2. Mhs 2 (Antrean #1)<br>
+            🖨️ <strong>Printer Laser:</strong> [Mencetak Halaman...]
+          </div>
+        </div>
+      </div>
+      <div style="background:#1e293b; border-left:4px solid #f59e0b; padding:8px 12px; font-size:0.75rem; color:#e2e8f0; margin-bottom:8px;">
+        💬 <em>"Sistem operasi menaruh semua pekerjaan ke antrean cetak (spooler), jadi tidak saling tabrakan."</em>
+      </div>
+      <div class="wf-bar">
+        <div style="display:flex; gap:6px;">
+          <span class="wf-btn" style="background:#d97706;">⏸ Jeda</span>
+          <span class="wf-btn" style="background:#475569;">↺ Ulang</span>
+          <span class="wf-btn" style="background:#475569;">🔊 Suara: Nyala</span>
+        </div>
+        <div style="flex:1; margin:0 10px; background:#475569; height:6px; border-radius:3px;">
+          <div style="background:#f59e0b; width:45%; height:100%; border-radius:3px;"></div>
+        </div>
+        <span>24 / 51 dtk</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Panggung SVG:</strong> Latar lab komputer bernuansa hangat (*#fdf3dc*).</li>
+          <li><strong>Animasi Paket:</strong> Bola-bola warna meluncur dari 10 laptop melewati router sentral menuju kotak antrean spooler.</li>
+          <li><strong>Animasi Kertas:</strong> Lembar dokumen putih dengan kepala garis warna keluar dari slot printer laser secara tertib.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>File Suara:</strong> [**`/suara/video2.mp4`**](file:///d:/KULIAH/SEMESTER%205/MULTIMEDIA%20PEMBELAJARAN/UTS/public/suara/video2.mp4) (Durasi 51.5 Detik).</li>
+          <li><strong>Naskah Narasi:</strong>
+            <div class="audio-box">"Di lab komputer ada 10 laptop, tetapi hanya 1 printer... Sistem operasi menaruh semua tugas ke antrean spooler, jadi tidak saling tabrakan. Itulah Resource Sharing!"</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Indikator counter: *"✅ x/10 Tercetak"* bertambah secara real-time.</li>
+          <li>Pengguna dapat menggeser timeline untuk melihat saat antrean menumpuk dan dicetak satu per satu.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Transisi mulus per baris antrean spooler yang bergeser ke atas setiap kali satu dokumen selesai dicetak.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 06: SIMULASI 3 - VIRTUALIZATION      -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 06</span>
+      <h2 class="frame-title">Simulasi 3: Virtualization (Memori Virtual: RAM & Swap)</h2>
+    </div>
+    <span class="frame-target">Durasi Video: ~61.6 Detik</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">SIMULATOR SVG MODAL 800x450</div>
+    <div class="wf-mockup">
+      <div class="wf-bar" style="background:#7c3aed; color:#fff;">
+        <span>🎬 SIMULASI 3: VIRTUAL MEMORY & HARDDISK SWAP</span>
+        <span style="font-size:0.65rem;">Memory Management Unit (MMU) Paging</span>
+      </div>
+      <div style="background:#f1e7ff; border-radius:8px; padding:12px; color:#0f172a; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <!-- Apps Left -->
+          <div style="width:20%; font-size:0.65rem; border:1px dashed #7c3aed; padding:6px; border-radius:6px;">
+            📝 Word (W1, W2)<br>
+            🌐 Chrome (B1, B2)<br>
+            🎵 Spotify (S1, S2)<br>
+            🎨 Photoshop (P1, P2)
+          </div>
+          <!-- RAM & Harddisk Center -->
+          <div style="width:50%; text-align:center;">
+            <div style="background:#fff; border:1px solid #7c3aed; padding:4px; border-radius:6px; margin-bottom:6px; font-size:0.65rem;">
+              🧠 <strong>RAM Fisik Terbatas:</strong> [Slot 1] [Slot 2] [Slot 3] [Slot 4] [Slot 5] [Slot 6] (6/6 Penuh!)
+            </div>
+            <div style="font-size:0.7rem; color:#e0561a; font-weight:700;">⬇ SWAP OUT: Word dipindah ke Disk demi Photoshop</div>
+            <div style="background:#fff; border:1px solid #7c3aed; padding:4px; border-radius:6px; margin-top:6px; font-size:0.65rem;">
+              💽 <strong>Harddisk / SSD (Swap Space Cadangan Luas)</strong>
+            </div>
+          </div>
+          <!-- Virtual View Right -->
+          <div style="width:25%; background:#fff; border:2px solid #7c3aed; padding:6px; border-radius:6px; font-size:0.65rem; text-align:center;">
+            🔮 <strong>Tampilan Virtual</strong><br>
+            <span class="wf-sub">(Yang dilihat aplikasi)</span><br>
+            Word: Lega ✓<br>
+            Chrome: Lega ✓<br>
+            Photoshop: Lega ✓
+          </div>
+        </div>
+      </div>
+      <div style="background:#1e293b; border-left:4px solid #a855f7; padding:8px 12px; font-size:0.75rem; color:#e2e8f0; margin-bottom:8px;">
+        💬 <em>"Bayu membuka Photoshop. OS memindahkan halaman Word yang lama tak dipakai ke harddisk (swap out) demi ruang kosong."</em>
+      </div>
+      <div class="wf-bar">
+        <div style="display:flex; gap:6px;">
+          <span class="wf-btn" style="background:#7c3aed;">⏸ Jeda</span>
+          <span class="wf-btn" style="background:#475569;">↺ Ulang</span>
+          <span class="wf-btn" style="background:#475569;">🔊 Suara: Nyala</span>
+        </div>
+        <div style="flex:1; margin:0 10px; background:#475569; height:6px; border-radius:3px;">
+          <div style="background:#a855f7; width:40%; height:100%; border-radius:3px;"></div>
+        </div>
+        <span>25 / 61 dtk</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Panggung SVG:</strong> Latar ungu lembut (*#f1e7ff*) beraksen garis manajer memori.</li>
+          <li><strong>Animasi Swap Out:</strong> Balok biru Word W1 & W2 meluncur turun ke slot harddisk saat Photoshop dimuat.</li>
+          <li><strong>Animasi Swap In:</strong> Saat Bayu membuka Word kembali pada detik 37.5, halaman Chrome meluncur turun dan halaman Word naik kembali ke RAM.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>File Suara:</strong> [**`/suara/video3.mp4`**](file:///d:/KULIAH/SEMESTER%205/MULTIMEDIA%20PEMBELAJARAN/UTS/public/suara/video3.mp4) (Durasi 61.6 Detik).</li>
+          <li><strong>Naskah Narasi:</strong>
+            <div class="audio-box">"RAM Bayu terbatas hanya 6 slot... OS memindahkan halaman Word ke harddisk demi ruang kosong. Itulah Virtualization!"</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Teks status RAM (*"Terisi x/6"*) berubah dinamis mengikuti gerak balok halaman memori.</li>
+          <li>Kontrol navigasi slider audio tersinkronisasi 100%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Perpindahan halaman memori menggunakan kurva perlambatan halus (*smooth bezier interpolation*).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 07: SIMULASI 4 - ASYNCHRONY          -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 07</span>
+      <h2 class="frame-title">Simulasi 4: Asynchrony (Interupsi Mouse Saat Video 60 FPS)</h2>
+    </div>
+    <span class="frame-target">Durasi Video: ~31.7 Detik</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">SIMULATOR SVG MODAL 800x450</div>
+    <div class="wf-mockup">
+      <div class="wf-bar" style="background:#059669; color:#fff;">
+        <span>🎬 SIMULASI 4: ASYNCHRONY & HARDWARE INTERRUPTS</span>
+        <span style="font-size:0.65rem;">Interrupt Service Routine (ISR) 4µs Execution</span>
+      </div>
+      <div style="background:#e2fbef; border-radius:8px; padding:12px; color:#0f172a; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:stretch;">
+          <!-- Left: 60 FPS Video Screen -->
+          <div style="width:50%; background:#111; color:#fff; padding:10px; border-radius:8px;">
+            <div style="font-size:0.7rem; color:#10b981;">▶ Pemutar Video (Frame 340)</div>
+            <div style="height:70px; display:flex; align-items:center; justify-content:center; background:#1b2a49; border-radius:6px; margin:6px 0;">
+              🟡 [Bola Video Bergerak Mulus 60 FPS]
+            </div>
+            <!-- Interactive Action Buttons -->
+            <div style="display:flex; gap:6px; justify-content:center;">
+              <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.65rem;">🔊 Vol</span>
+              <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.65rem;">❤️ Like</span>
+              <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.65rem;">CC Sub</span>
+              <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.65rem;">📷 Foto</span>
+            </div>
+          </div>
+          <!-- Lightning Bolt Arrow -->
+          <div style="display:flex; align-items:center; font-size:1.2rem; color:#f59e0b;">
+            ⚡ IRQ
+          </div>
+          <!-- Right: CPU Interrupt Handler -->
+          <div style="width:40%; background:#fff; border:2px solid #059669; padding:10px; border-radius:8px; font-size:0.7rem;">
+            🧠 <strong>CPU Execution Unit:</strong><br>
+            <span style="color:#e03131; font-weight:700;">⚡ INTERUPSI dari mouse!</span><br>
+            1. Simpan posisi video ✓<br>
+            2. Jalankan handler: proses klik (ISR) ✓<br>
+            3. Lanjutkan video ✓<br>
+            <span style="color:#059669; font-weight:700; font-size:0.65rem;">Video: tetap berjalan tanpa freeze!</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#1e293b; border-left:4px solid #10b981; padding:8px 12px; font-size:0.75rem; color:#e2e8f0; margin-bottom:8px;">
+        💬 <em>"Klik = interupsi! CPU menyimpan posisi video, lalu menjalankan penanganan klik (ISR). Video tidak macet sama sekali."</em>
+      </div>
+      <div class="wf-bar">
+        <div style="display:flex; gap:6px;">
+          <span class="wf-btn" style="background:#059669;">⏸ Jeda</span>
+          <span class="wf-btn" style="background:#475569;">↺ Ulang</span>
+          <span class="wf-btn" style="background:#475569;">🔊 Suara: Nyala</span>
+        </div>
+        <div style="flex:1; margin:0 10px; background:#475569; height:6px; border-radius:3px;">
+          <div style="background:#10b981; width:35%; height:100%; border-radius:3px;"></div>
+        </div>
+        <span>10 / 31 dtk</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Panggung SVG:</strong> Latar hijau mint (*#e2fbef*) dengan pemutar film sinematik di kiri dan panel CPU di kanan.</li>
+          <li><strong>Efek Interupsi:</strong> Sambaran petir animasi ⚡ memancar dari kursor mouse menuju CPU setiap kali tombol diklik.</li>
+          <li><strong>Timeline Balok Bawah:</strong> Balok hijau (eksekusi video) diselingi garis merah tipis (penanganan ISR 4 mikrodetik).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>File Suara:</strong> [**`/suara/video4.mp4`**](file:///d:/KULIAH/SEMESTER%205/MULTIMEDIA%20PEMBELAJARAN/UTS/public/suara/video4.mp4) (Durasi 31.7 Detik).</li>
+          <li><strong>Naskah Narasi:</strong>
+            <div class="audio-box">"Bayu menonton video. CPU sibuk memutar frame demi frame... Klik = interupsi! Selesai ditangani, CPU langsung melanjutkan video. Itulah Asynchrony!"</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Kursor mouse virtual bergerak otomatis mengeklik tombol volume, like, subtitle, dan kamera.</li>
+          <li>Toast notifikasi muncul sesaat mengonfirmasi perintah (*"🔊 Volume dinaikkan"*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Transisi status CPU berubah instan dari hijau (Running) ke merah (Interrupt Handling) lalu kembali ke hijau dalam 200ms.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 08: MODUL 3 - ARSITEKTUR OS          -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 08</span>
+      <h2 class="frame-title">Modul 3: Arsitektur & Komponen Inti Sistem Operasi</h2>
+    </div>
+    <span class="frame-target">Estimasi Baca: 4 Menit</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar">
+        <span>🏗️ MODUL 3: KOMPONEN INTERNAL & KERNEL SISTEM OPERASI</span>
+        <span style="color:#38bdf8;">Arsitektur Monolithic vs Microkernel</span>
+      </div>
+      <!-- Tab Bar -->
+      <div style="display:flex; gap:6px; margin:8px 0;">
+        <span class="wf-btn">1. Kernel Mode vs User Mode</span>
+        <span class="wf-btn" style="background:#1e293b; color:#94a3b8;">2. CPU Scheduler</span>
+        <span class="wf-btn" style="background:#1e293b; color:#94a3b8;">3. Memory Manager</span>
+        <span class="wf-btn" style="background:#1e293b; color:#94a3b8;">4. File System</span>
+        <span class="wf-btn" style="background:#1e293b; color:#94a3b8;">5. Device Drivers</span>
+      </div>
+      <!-- Content Detail -->
+      <div class="wf-grid" style="grid-template-columns: 1fr 1fr; margin-top:8px;">
+        <div class="wf-card">
+          <div style="font-weight:700; color:#38bdf8; margin-bottom:4px;">🛡️ Mode Dual-Operasi (Ring 0 & Ring 3)</div>
+          <div class="wf-sub">Sistem operasi modern memisahkan hak akses ke dalam dua ring keamanan:</div>
+          <div style="margin-top:6px; font-size:0.7rem;">
+            • <strong>User Space (Ring 3):</strong> Aplikasi umum berjalan dengan proteksi terbatas.<br>
+            • <strong>Kernel Space (Ring 0):</strong> Inti OS memiliki akses langsung tanpa batas ke register CPU & hardware.
+          </div>
+        </div>
+        <div class="wf-card">
+          <div style="font-weight:700; color:#f59e0b; margin-bottom:4px;">⚖️ Monolithic vs Microkernel</div>
+          <div style="font-size:0.7rem;">
+            • <strong>Monolithic (Linux, Windows NT):</strong> Semua driver & servis berada di kernel demi kecepatan maksimal.<br>
+            • <strong>Microkernel (Minix, QNX):</strong> Hanya fungsi esensial di kernel; driver berjalan di user mode demi stabilitas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Struktur Tab Interaktif:</strong> 5 pilihan tab komponen inti di bagian atas.</li>
+          <li><strong>Diagram Cincin Keamanan:</strong> Ilustrasi *Ring 0 (Kernel)* dan *Ring 3 (User Applications)*.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX:</strong> Efek *click switch* saat berpindah antar tab komponen.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Mengklik tab memperbarui teks penjelasan dan diagram teknis secara reaktif tanpa me-refresh halaman.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Konten tab berganti dengan animasi *Fade In* (200ms).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 09: MODUL 4 - EVOLUSI SISTEM OPERASI -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 09</span>
+      <h2 class="frame-title">Modul 4: Evolusi & Klasifikasi Sistem Operasi</h2>
+    </div>
+    <span class="frame-target">Estimasi Baca: 3 Menit</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar">
+        <span>⏳ MODUL 4: SEJARAH & GARIS WAKTU GENERASI OS</span>
+        <span style="color:#f59e0b;">Dari Tabung Hampa ke AI Cloud OS</span>
+      </div>
+      <!-- Timeline Cards -->
+      <div class="wf-grid" style="grid-template-columns: repeat(5, 1fr); margin:10px 0;">
+        <div class="wf-card" style="font-size:0.65rem;">
+          <div style="font-weight:700; color:#38bdf8;">Gen 1 (1940-an)</div>
+          Tabung hampa, plugboard kabel manual, belum ada OS.
+        </div>
+        <div class="wf-card" style="font-size:0.65rem;">
+          <div style="font-weight:700; color:#38bdf8;">Gen 2 (1950-an)</div>
+          Transistor, Batch Processing System, kartu punch.
+        </div>
+        <div class="wf-card" style="font-size:0.65rem;">
+          <div style="font-weight:700; color:#f59e0b;">Gen 3 (1960-an)</div>
+          IC, Multiprogramming, Time-Sharing, UNIX lahir.
+        </div>
+        <div class="wf-card" style="font-size:0.65rem;">
+          <div style="font-weight:700; color:#10b981;">Gen 4 (1980-an)</div>
+          Era PC & GUI (MS-DOS, Windows 95, Macintosh).
+        </div>
+        <div class="wf-card" style="font-size:0.65rem;">
+          <div style="font-weight:700; color:#a855f7;">Gen 5 (Kini)</div>
+          Mobile OS, Cloud, IoT, RTOS & AI Embedded.
+        </div>
+      </div>
+      <!-- CLI vs GUI Mockup -->
+      <div style="display:flex; gap:10px;">
+        <div style="flex:1; background:#000; color:#10b981; padding:8px; border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:0.65rem;">
+          C:\&gt; dir<br>
+          C:\&gt; copy file.txt A:\<br>
+          [Antarmuka Command Line Interface / CLI]
+        </div>
+        <div style="flex:1; background:#1e293b; color:#38bdf8; padding:8px; border-radius:6px; font-size:0.65rem;">
+          🖱️ [Antarmuka Grafis GUI Modern]<br>
+          Ikon Desktop, Drag & Drop, Jendela Visual
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Garis Waktu Horizontal:</strong> 5 kartu generasi dengan penanda milestone sejarah komputer.</li>
+          <li><strong>Perbandingan Visual CLI vs GUI:</strong> Terminal hitam konsol hijau berdampingan dengan antarmuka jendela GUI modern.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX:</strong> Suara ketukan keyboard mekanik (*keyboard clack*) saat menyorot kotak CLI.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Kartu generasi membesar saat disentuh kursor (*zoom hover*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Elemen garis waktu bergerak secara horizontal saat discroll.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 10: MODUL 5 - KOMPARASI OS           -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 10</span>
+      <h2 class="frame-title">Modul 5: Komparasi Desktop OS vs Mobile OS</h2>
+    </div>
+    <span class="frame-target">Tabel Komparasi Menyeluruh</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar">
+        <span>⚖️ MODUL 5: TABEL PERBANDINGAN DESKTOP VS MOBILE OS</span>
+        <span style="color:#38bdf8;">Persiapan Menuju Kuis Evaluasi</span>
+      </div>
+      <!-- Comparison Table -->
+      <table style="width:100%; border-collapse:collapse; font-size:0.68rem; margin:8px 0; background:#1e293b; border-radius:6px; overflow:hidden;">
+        <tr style="background:#334155; color:#fff; font-weight:700;">
+          <th style="padding:6px; border:1px solid #475569;">Aspek Analisis</th>
+          <th style="padding:6px; border:1px solid #475569; color:#38bdf8;">🖥️ Desktop OS (Windows, macOS)</th>
+          <th style="padding:6px; border:1px solid #475569; color:#f59e0b;">📱 Mobile OS (Android, iOS)</th>
+        </tr>
+        <tr>
+          <td style="padding:5px; border:1px solid #475569; font-weight:700;">Input Utama</td>
+          <td style="padding:5px; border:1px solid #475569;">Mouse presisi piksel & Keyboard fisik</td>
+          <td style="padding:5px; border:1px solid #475569;">Layar sentuh jempol & Gestur usapan</td>
+        </tr>
+        <tr>
+          <td style="padding:5px; border:1px solid #475569; font-weight:700;">Manajemen Daya</td>
+          <td style="padding:5px; border:1px solid #475569;">Listrik AC permanen (Performa Maksimal)</td>
+          <td style="padding:5px; border:1px solid #475569;">Baterai ketat (Aplikasi pasif dibekukan)</td>
+        </tr>
+        <tr>
+          <td style="padding:5px; border:1px solid #475569; font-weight:700;">Multitasking</td>
+          <td style="padding:5px; border:1px solid #475569;">Banyak jendela mengambang bebas</td>
+          <td style="padding:5px; border:1px solid #475569;">Fokus 1 layar penuh (App Switcher)</td>
+        </tr>
+        <tr>
+          <td style="padding:5px; border:1px solid #475569; font-weight:700;">Keamanan & File</td>
+          <td style="padding:5px; border:1px solid #475569;">Akses Administrator & File System bebas</td>
+          <td style="padding:5px; border:1px solid #475569;">Isolasi Sandbox ketat & Toko Aplikasi</td>
+        </tr>
+      </table>
+      <div style="text-align:center; margin-top:12px;">
+        <span class="wf-btn" style="background:#10b981; font-size:0.8rem; padding:6px 16px;">🎯 Menuju Kuis Evaluasi Pemahaman ⏭</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Tabel Matriks Komparatif:</strong> Disusun rapi dengan kolom kontras antara Desktop dan Mobile.</li>
+          <li><strong>Responsivitas:</strong> Mendukung *horizontal scroll* pada layar ponsel tanpa merusak tata letak.</li>
+          <li><strong>Tombol Penutup:</strong> Tombol hijau terang mengarahkan pengguna untuk menguji kemampuan di Kuis Evaluasi.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX:</strong> Efek nada pemicu kesiapan kuis (*action ready chime*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Baris tabel berubah warna saat kursor menunjuk (*hover highlight*).</li>
+          <li>Tombol *Kuis Evaluasi* memuat halaman kuis interaktif.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Transisi *Slide to Left* menuju modul kuis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 11: EVALUASI - KUIS INTERAKTIF       -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 11</span>
+      <h2 class="frame-title">Evaluasi: Kuis Interaktif Sistem Operasi</h2>
+    </div>
+    <span class="frame-target">10 Soal Pilihan Ganda (Passing Grade: 70)</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar">
+        <span>🎯 KUIS INTERAKTIF EVALUASI PEMAHAMAN</span>
+        <span style="color:#f59e0b;">Soal 4 dari 10</span>
+      </div>
+      <!-- Progress Bar -->
+      <div style="background:#334155; height:6px; border-radius:3px; margin:6px 0 12px;">
+        <div style="background:#10b981; width:40%; height:100%; border-radius:3px;"></div>
+      </div>
+      <!-- Question Card -->
+      <div class="wf-card" style="margin-bottom:10px;">
+        <div style="font-weight:700; font-size:0.85rem; margin-bottom:8px;">
+          4. Manakah mekanisme OS yang digunakan saat kapasitas RAM fisik telah penuh agar komputer tidak crash ketika membuka aplikasi baru?
+        </div>
+        <div class="wf-grid" style="grid-template-columns: 1fr; gap:6px;">
+          <div style="background:#0f172a; border:1px solid #475569; padding:6px 10px; border-radius:6px;">A. Menghapus otomatis file sistem operasi</div>
+          <div style="background:#059669; border:1px solid #10b981; color:#fff; font-weight:700; padding:6px 10px; border-radius:6px;">✓ B. Memindahkan halaman data pasif ke swap/pagefile di harddisk (Virtual Memory)</div>
+          <div style="background:#0f172a; border:1px solid #475569; padding:6px 10px; border-radius:6px;">C. Mematikan pasokan daya listrik ke monitor</div>
+          <div style="background:#0f172a; border:1px solid #475569; padding:6px 10px; border-radius:6px;">D. Mengunci kursor mouse secara permanen</div>
+        </div>
+      </div>
+      <!-- Feedback Box -->
+      <div style="background:#064e3b; border:1px solid #10b981; color:#a7f3d0; padding:8px 12px; border-radius:6px; font-size:0.7rem; margin-bottom:8px;">
+        💡 <strong>Jawaban Tepat!</strong> Konsep Virtualisasi memori memanfaatkan sebagian ruang harddisk/SSD sebagai memori cadangan maya (Swap Space).
+      </div>
+      <div style="text-align:right;">
+        <span class="wf-btn">Lanjut ke Soal Berikutnya ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Header Kuis:</strong> Menampilkan *progress bar* persentase pengerjaan dan nomor soal aktif.</li>
+          <li><strong>Kotak Pilihan:</strong> 4 opsi jawaban dengan tombol radio button yang berubah hijau (jawaban benar) atau merah (jawaban salah) secara instan.</li>
+          <li><strong>Kotak Pembahasan:</strong> Muncul otomatis di bawah opsi pilihan setelah siswa menjawab.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX Jawaban Benar:</strong> Denting lonceng kemenangan manis (*bell chime*).</li>
+          <li><strong>SFX Jawaban Salah:</strong> Nada peringatan halus (*gentle buzz*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Klik opsi mengunci jawaban dan menghentikan pengubahan pilihan.</li>
+          <li>Skor kumulatif dihitung otomatis di latar belakang sistem.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Peralihan soal menggunakan transisi geser horizontal (*horizontal carousel switch*).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 12: EVALUASI - HASIL LULUS & QR CODE -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 12</span>
+      <h2 class="frame-title">Hasil Evaluasi: Kelulusan & Video Pengayaan (Skor ≥ 70)</h2>
+    </div>
+    <span class="frame-target">Kondisi: Skor Memenuhi KKM (≥ 70)</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar" style="background:#059669; color:#fff;">
+        <span>🏆 HASIL AKHIR EVALUASI: SELAMAT ANDA LULUS!</span>
+        <span>Skor: 90 / 100</span>
+      </div>
+      <div class="wf-grid" style="grid-template-columns: 1fr 1fr; margin:12px 0;">
+        <!-- Left: Certificate Badge -->
+        <div class="wf-card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem;">🎉</div>
+          <div style="font-size:1rem; font-weight:800; color:#10b981;">KOMPETENSI TERPENUHI!</div>
+          <div style="font-size:1.6rem; font-weight:800; margin:6px 0; color:#fbbf24;">90 Poin</div>
+          <div class="wf-sub">Anda telah menguasai seluruh konsep inti Sistem Operasi (Concurrency, Sharing, Virtualization, & Asynchrony) dengan sangat memuaskan.</div>
+          <div style="margin-top:10px;">
+            <span class="wf-btn" style="background:#334155;">↺ Ulangi Kuis</span>
+          </div>
+        </div>
+        <!-- Right: Enrichment QR Code -->
+        <div class="wf-card" style="text-align:center; padding:16px; border:2px solid #f59e0b;">
+          <div style="font-weight:700; color:#f59e0b; margin-bottom:6px;">📱 Video Dokumenter Pengayaan Materi</div>
+          <div style="display:inline-block; background:#fff; padding:8px; border-radius:8px; margin:6px 0;">
+            <!-- QR Placeholder -->
+            <div style="width:90px; height:90px; border:2px dashed #000; display:flex; align-items:center; justify-content:center; color:#000; font-size:0.65rem; font-weight:700;">
+              [QR CODE VIDEO]
+            </div>
+          </div>
+          <div class="wf-sub">Pindai QR Code di atas atau klik tautan di bawah untuk menonton video pengayaan arsitektur OS di YouTube:</div>
+          <div style="margin-top:8px;">
+            <span class="wf-btn" style="background:#dc2626;">▶ Buka Video YouTube ↗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Lencana Emas Kelulusan:</strong> Bintang perayaan, angka skor berukuran besar (*font-size 2.5rem*), dan lencana kompetensi hijau zamrud.</li>
+          <li><strong>QR Code Interaktif:</strong> Kode QR beresolusi tinggi terhubung langsung ke tautan video edukasi YouTube.</li>
+          <li><strong>Tombol Tautan:</strong> Tombol merah YouTube untuk membuka video dokumenter di tab baru.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX:</strong> Musik selebrasi kemenangan (*victory fanfare*) berdurasi 3 detik saat layar kelulusan terbuka.</li>
+          <li><strong>Voiceover:</strong> Ucapan selamat atas ketuntasan belajar.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Siswa dapat memindai QR Code dengan smartphone atau mengklik tombol video langsung.</li>
+          <li>Tombol *Ulangi Kuis* untuk mengulang latihan mandiri.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Efek konfeti partikel visual jatuh (*confetti burst animation*) merayakan kelulusan.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FRAME 13: EVALUASI - BELUM LULUS           -->
+<!-- ========================================== -->
+<section class="frame-sheet">
+  <div class="frame-header">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="frame-badge">FRAME 13</span>
+      <h2 class="frame-title">Hasil Evaluasi: Belum Lulus & Rekomendasi Remedial (Skor < 70)</h2>
+    </div>
+    <span class="frame-target">Kondisi: Skor di Bawah KKM (< 70)</span>
+  </div>
+
+  <div class="wireframe-box">
+    <div class="wireframe-title-tag">WIREFRAME VIEWPORT 1440x900</div>
+    <div class="wf-mockup">
+      <div class="wf-bar" style="background:#e11d48; color:#fff;">
+        <span>⚠️ HASIL AKHIR EVALUASI: BELUM MENCAPAI KKM</span>
+        <span>Skor: 50 / 100</span>
+      </div>
+      <div style="background:#1e293b; border-radius:8px; padding:16px; margin:12px 0; text-align:center;">
+        <div style="font-size:2rem;">💪</div>
+        <div style="font-size:1rem; font-weight:800; color:#fb7185;">TETAP SEMANGAT! JANGAN BERKECIL HATI!</div>
+        <div style="font-size:1.6rem; font-weight:800; margin:6px 0; color:#f43f5e;">50 Poin (Minimal: 70)</div>
+        <div class="wf-sub" style="max-width:550px; margin:0 auto 12px;">
+          Skor Anda belum memenuhi standar ketuntasan minimal. Disarankan menonton ulang video simulasi karakteristik sistem operasi untuk memperkuat pemahaman sebelum mengulang kuis.
+        </div>
+        <!-- Remedial Action Buttons -->
+        <div style="display:flex; justify-content:center; gap:10px;">
+          <span class="wf-btn" style="background:#f43f5e;">🔄 Coba Remedial Kuis Lagi</span>
+          <span class="wf-btn" style="background:#0284c7;">📖 Buka Kembali Modul 2 (Simulasi)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-cell">
+      <div class="spec-title visual">🎨 Deskripsi Visual & Tata Letak</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>Palet Warna:</strong> Aksen merah mawar (*Rose 500*) yang hangat dan memotivasi tanpa memberi kesan menghakimi.</li>
+          <li><strong>Ikon Penyemangat:</strong> Ikon kepalan tangan kuat (*💪*) dan pesan afirmatif.</li>
+          <li><strong>Tombol Rekomendasi:</strong> Tombol remedial dan tautan pintas menuju Modul 2.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title audio">🎙️ Audio / Voiceover & SFX</div>
+      <div class="spec-content">
+        <ul>
+          <li><strong>SFX:</strong> Nada pendukung lembut (*gentle encouraging chime*).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title interact">🖱️ Interaktivitas</div>
+      <div class="spec-content">
+        <ul>
+          <li>Tombol <strong>Coba Remedial Kuis Lagi</strong> mereset skor dan memulai kuis dari soal nomor 1.</li>
+          <li>Tombol <strong>Buka Kembali Modul 2</strong> mengarahkan siswa langsung ke video simulasi interaktif.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-cell">
+      <div class="spec-title transition">⚡ Transisi Layar</div>
+      <div class="spec-content">
+        <ul>
+          <li>Transisi *Fade In* (300ms) menampilkan lembar remedial secara jelas dan ramah.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

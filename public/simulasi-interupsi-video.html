@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Video Simulasi Interupsi Video</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#ecfdf5;--card:#fff;--tx:#0f3323;--mut:#4d7a66;--bd:#b7ecd3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1a14;--card:#12261d;--tx:#e6f6ee;--mut:#8fb8a4;--bd:#25493a}}
+:root[data-theme="dark"]{--bg:#0a1a14;--card:#12261d;--tx:#e6f6ee;--mut:#8fb8a4;--bd:#25493a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.25rem;margin:0 0 10px}
+.stage{border-radius:16px;overflow:hidden;border:1px solid var(--bd);background:#e2fbef}
+svg{display:block;width:100%;height:auto}
+.cap{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:10px 0;font-weight:600;min-height:3.4em}
+.ctl{display:flex;gap:10px;align-items:center}
+button{font:inherit;font-weight:600;border:0;border-radius:10px;padding:8px 14px;background:#059669;color:#fff;cursor:pointer}
+input[type=range]{flex:1}
+.tm{font-size:.85rem;color:var(--mut);min-width:70px;text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🎬 Simulasi Interupsi: Klik Mouse Saat Video Berputar</h1>
+<div class="stage">
+<svg viewBox="0 0 800 450" font-family="system-ui,sans-serif" text-anchor="middle">
+<defs><clipPath id="cv"><rect x="40" y="50" width="400" height="165"/></clipPath></defs>
+<rect width="800" height="450" fill="#e2fbef"/>
+<text x="240" y="34" font-size="13" font-weight="700" fill="#0f5c3a">🧑‍💻 Bayu menonton video</text>
+<!-- player -->
+<rect x="40" y="50" width="400" height="230" rx="10" fill="#111"/>
+<rect x="40" y="50" width="400" height="165" fill="#1b2a49"/>
+<g id="scene" clip-path="url(#cv)"></g>
+<text id="fr" x="52" y="68" font-size="11" fill="#9fe8c4" text-anchor="start"></text>
+<g id="toast" opacity="0"><rect x="150" y="176" width="180" height="26" rx="13" fill="#000" fill-opacity=".75"/><text id="toT" x="240" y="194" font-size="12" fill="#fff" font-weight="700"></text></g>
+<rect x="50" y="224" width="380" height="5" rx="2" fill="#444"/><rect id="pg" x="50" y="224" width="0" height="5" rx="2" fill="#10b981"/>
+<text id="tt" x="430" y="240" font-size="10" fill="#aaa" text-anchor="end"></text>
+<g id="btn"></g>
+<g id="rip"></g>
+<!-- CPU -->
+<rect x="470" y="50" width="300" height="230" rx="12" fill="#fff" stroke="#10b981" stroke-width="2"/>
+<text x="620" y="74" font-size="14" font-weight="700" fill="#0f5c3a">🧠 CPU</text>
+<text id="st" x="620" y="102" font-size="15" font-weight="800"></text>
+<g id="steps"></g>
+<text id="ok" x="620" y="262" font-size="12" font-weight="700" fill="#059669"></text>
+<text id="bolt" font-size="22" opacity="0">⚡</text>
+<!-- timeline -->
+<text x="40" y="318" font-size="12" font-weight="700" fill="#0f5c3a" text-anchor="start">Waktu kerja CPU (diperlambat agar terlihat)</text>
+<g id="tl"></g>
+<rect x="470" y="306" width="10" height="10" fill="#12a150"/><text x="484" y="315" font-size="10" fill="#0f5c3a" text-anchor="start">Video</text>
+<rect x="530" y="306" width="10" height="10" fill="#e03131"/><text x="544" y="315" font-size="10" fill="#0f5c3a" text-anchor="start">Interupsi (ISR)</text>
+<text id="cnt" x="400" y="405" font-size="14" font-weight="700" fill="#0f5c3a"></text>
+<!-- cursor -->
+<path id="cur" d="M0 0L0 18L5 14L9 22L12 20L8 13L14 13Z" fill="#fff" stroke="#000" stroke-width="1.2"/>
+</svg>
+</div>
+<div class="cap" id="cap"></div>
+<div class="ctl">
+  <button id="pp">⏸</button>
+  <button id="rs">↺</button>
+  <button id="muteBtn" title="Bisukan / Nyalakan Suara">🔊</button>
+  <input type="range" id="sc" min="0" max="3174" value="0">
+  <span class="tm" id="tm"></span>
+</div>
+<audio id="aud" src="/suara/video4.mp4" preload="auto"></audio>
+</div>
+<script>
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const aud=$('aud');
+let T=31.74;
+aud.onloadedmetadata=()=>{if(aud.duration&&!isNaN(aud.duration)){T=aud.duration;$('sc').max=Math.round(T*100)}};
+
+const el=(tag,a,p,txt)=>{const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e};
+const IT=[8,13,18,23],D=1.2,BX=[80,130,180,230],BL=['🔊','❤','CC','📷'],TS=['🔊 Volume dinaikkan','❤ Video disukai','CC Subtitle aktif','📷 Screenshot tersimpan'];
+const WP=[[0,300,140],[5,300,150],[7.6,80,250],[10,80,250],[12.6,130,250],[14,130,250],[17.6,180,250],[19,180,250],[22.6,230,250],[24,230,250],[27,330,150],[31.74,330,150]];
+const S=[[0,'Bayu menonton video. CPU sibuk memutar video frame demi frame.'],
+[5,'Bayu menggerakkan mouse ke tombol volume, lalu mengeklik.'],
+[8,'Klik = interupsi (interrupt)! CPU menyimpan posisi video, lalu menjalankan penanganan klik (ISR).'],
+[9.2,'Selesai ditangani, CPU langsung melanjutkan video. Video tidak macet sama sekali.'],
+[12.5,'Bayu mengeklik tombol lain kapan saja. Interupsi datang tak terduga (asinkron), tetapi OS selalu siap merespons.'],
+[26,'Itulah Asynchrony: OS merespons interupsi mendadak tanpa membuat komputer freeze.']];
+const BG=[];BX.forEach((x,i)=>{const g=el('g',{},$('btn'));BG.push(el('rect',{x:x-17,y:240,width:34,height:26,rx:8,fill:'#333'},g));el('text',{x:x,y:258,'font-size':13,fill:'#fff','font-weight':700},g,BL[i])});
+const SC=[];for(let i=0;i<7;i++)SC.push(el('rect',{y:50,width:40,height:165,fill:'#274472'},$('scene')));
+const ball=el('circle',{r:16,fill:'#ffd54a'},$('scene'));
+const RP=IT.map(()=>el('circle',{fill:'none',stroke:'#fff','stroke-width':3,opacity:0},$('rip')));
+const ST=['1. Simpan posisi video','2. Jalankan handler: proses klik','3. Lanjutkan video'].map((s,i)=>el('text',{x:495,y:140+i*26,'font-size':12,'text-anchor':'start'},$('steps'),s));
+const SL=[];for(let k=0;k<120;k++)SL.push(el('rect',{x:40+k*6,y:326,width:5.5,height:40,fill:'#12a150',opacity:0},$('tl')));
+const sm=x=>x*x*(3-2*x),pad=n=>String(n).padStart(2,'0');
+function render(t){
+ let si=0;S.forEach((s,i)=>{if(t>=s[0])si=i});$('cap').textContent=S[si][1];
+ // video scene (never stops)
+ SC.forEach((r,i)=>r.setAttribute('x',40+(((i*70-t*70)%490)+490)%490-40));
+ ball.setAttribute('cx',60+340*(.5+.5*Math.sin(t*1.5)));ball.setAttribute('cy',120+35*Math.sin(t*3.2));
+ $('fr').textContent='▶ Frame '+Math.floor(t*24);$('pg').setAttribute('width',380*Math.min(1,t/T));$('tt').textContent='0:'+pad(Math.floor(t))+' / 0:'+pad(Math.floor(T));
+ // cursor
+ let j=0;while(j<WP.length-2&&t>=WP[j+1][0])j++;
+ const a=WP[j],b=WP[j+1],q=sm(cl((t-a[0])/(b[0]-a[0])));const cx=a[1]+(b[1]-a[1])*q,cy=a[2]+(b[2]-a[2])*q;
+ $('cur').setAttribute('transform',`translate(${cx},${cy})`);
+ // interrupts
+ let act=-1,done=0,w=0;IT.forEach((ti,i)=>{if(t>=ti+D)done++;if(t>=ti&&t<ti+D){act=i;w=t-ti}});
+ IT.forEach((ti,i)=>{const p=t-ti,r=RP[i];if(p>=0&&p<.6){r.setAttribute('cx',BX[i]);r.setAttribute('cy',253);r.setAttribute('r',6+p*40);r.setAttribute('opacity',1-p/.6)}else r.setAttribute('opacity',0);
+  BG[i].setAttribute('fill',p>=0&&p<.4?'#10b981':'#333')});
+ // toast
+ let ti=-1;IT.forEach((x,i)=>{if(t>=x+.9&&t<x+3)ti=i});$('toast').setAttribute('opacity',ti>=0?1:0);if(ti>=0)$('toT').textContent=TS[ti];
+ // CPU panel
+ const st=$('st');st.textContent=act>=0?'⚡ INTERUPSI dari mouse!':'▶ Memutar video';st.setAttribute('fill',act>=0?'#e03131':'#059669');
+ const ph=act<0?-1:w<.3?0:w<.8?1:2;
+ ST.forEach((s,i)=>{s.setAttribute('fill',i===ph?'#e03131':'#9bb5a8');s.setAttribute('font-weight',i===ph?800:400)});
+ $('ok').textContent=t>=4?'Video: tetap berjalan ✓':'';
+ // bolt
+ const bl=$('bolt');if(act>=0&&w<.35){const p=w/.35;bl.setAttribute('x',cx+(470-cx)*p);bl.setAttribute('y',cy+(150-cy)*p);bl.setAttribute('opacity',1)}else bl.setAttribute('opacity',0);
+ // timeline
+ SL.forEach((r,k)=>{const m=k*.25+.125;r.setAttribute('opacity',k*.25<t?1:0);r.setAttribute('fill',IT.some(x=>m>=x&&m<x+D)?'#e03131':'#12a150')});
+ $('cnt').textContent=`⚡ Interupsi ditangani: ${done}/4     🎞 Video freeze: 0 kali ✓`;
+ $('sc').value=Math.round(t*100);$('tm').textContent=t.toFixed(0)+' / '+T.toFixed(0)+' dtk';
+}
+function cl(x){return Math.max(0,Math.min(1,x))}
+let t=0,run=true,last=performance.now();
+function frame(now){
+ const dt=(now-last)/1000;last=now;
+ if(run){
+  if(!aud.paused&&aud.currentTime>0){t=aud.currentTime}else{t+=dt}
+  if(t>=T){t=T;run=false;$('pp').textContent='▶';aud.pause()}
+ }
+ render(t);
+ requestAnimationFrame(frame);
+}
+$('pp').onclick=()=>{
+ if(t>=T){t=0;try{aud.currentTime=0}catch(e){}}
+ run=!run;$('pp').textContent=run?'⏸':'▶';
+ if(run){aud.play().catch(()=>{})}else{aud.pause()}
+};
+$('rs').onclick=()=>{t=0;try{aud.currentTime=0}catch(e){};run=true;$('pp').textContent='⏸';aud.play().catch(()=>{})};
+$('muteBtn').onclick=()=>{aud.muted=!aud.muted;$('muteBtn').textContent=aud.muted?'🔇':'🔊'};
+$('sc').oninput=e=>{t=e.target.value/100;try{aud.currentTime=Math.min(t,aud.duration||t)}catch(e){};render(t)};
+document.addEventListener('click',()=>{if(run&&aud.paused){try{aud.currentTime=t}catch(e){};aud.play().catch(()=>{})}},{once:true});
+aud.play().catch(()=>{});
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
