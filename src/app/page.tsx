@@ -550,26 +550,6 @@ export default function Home() {
                 <svg className="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                 <span>Peta Materi</span>
               </button>
-
-              {/* Tombol START (Kembali ke Awal) */}
-              <button 
-                onClick={() => navigate('mulai')} 
-                className="btn-bounce px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-extrabold text-xs shadow-md shadow-sky-500/20 transition flex items-center gap-1"
-                title="START: Kembali ke Layar Awal Mulai"
-              >
-                <span className="text-sm">🏁</span>
-                <span className="tracking-wide">START</span>
-              </button>
-
-              {/* Tombol END (Menuju Titik Akhir / Selesai) */}
-              <button 
-                onClick={() => navigate('selesai')} 
-                className="btn-bounce px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-extrabold text-xs shadow-md shadow-rose-500/20 transition flex items-center gap-1"
-                title="END: Menuju Titik Akhir (Layar Selesai & Sertifikat)"
-              >
-                <span className="text-sm">🛑</span>
-                <span className="tracking-wide">END</span>
-              </button>
             </div>
           </div>
         </header>
@@ -2328,11 +2308,12 @@ export default function Home() {
 
             <div className="flex items-center justify-between border-t border-slate-200 pt-6 mt-8">
               <button 
-                onClick={() => navigate('modul5')} 
-                className="btn-bounce px-5 py-3 rounded-2xl bg-white border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 transition flex items-center gap-2 shadow-xs"
+                onClick={() => navigate('mulai')} 
+                className="btn-bounce px-6 py-3 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-extrabold text-sm shadow-md shadow-rose-500/25 transition flex items-center gap-2"
+                title="Selesai dan Kembali ke Beranda Utama"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
-                Modul 5
+                <span className="text-base">🛑</span>
+                <span className="tracking-wide">END</span>
               </button>
               <button 
                 onClick={() => navigate('dashboard')} 
