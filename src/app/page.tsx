@@ -2469,11 +2469,11 @@ export default function Home() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
               </button>
               <button 
-                onClick={() => navigate('mulai')}
-                className="btn-bounce w-full sm:w-auto px-7 py-3.5 bg-white border-2 border-slate-300 hover:border-brand-400 hover:bg-sky-50/50 text-slate-700 font-bold text-sm rounded-2xl shadow-xs flex items-center justify-center gap-2.5"
+                onClick={() => { resetQuiz(); navigate('mulai'); }}
+                className="btn-bounce w-full sm:w-auto px-7 py-3.5 bg-white border-2 border-slate-300 hover:border-brand-400 hover:bg-sky-50/50 text-slate-700 font-bold text-sm rounded-2xl shadow-xs flex items-center justify-center gap-2"
+                title="Selesai Sesi Belajar & Kembali ke Layar Mulai"
               >
-                <span className="px-2.5 py-0.5 bg-slate-100 border border-slate-200 rounded-md text-xs font-mono font-extrabold text-slate-700">END / REPEAT 🔄</span>
-                <span>Selesai Sesi (Mulai Baru)</span>
+                <span>Selesai Sesi Belajar</span>
               </button>
             </div>
           </section>
