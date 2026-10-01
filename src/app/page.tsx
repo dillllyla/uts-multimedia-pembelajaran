@@ -24,65 +24,194 @@ type QuizItem = {
 };
 
 const quizData: QuizItem[] = [
+  // Modul 1: Pengertian & Peran OS (3 Soal)
   {
     modul: "Modul 1: Konsep Dasar",
-    question: "Peran utama Sistem Operasi (OS) dalam arsitektur komputer adalah sebagai...",
+    question: "Dalam arsitektur sistem komputer, posisi dan peran utama Sistem Operasi (OS) berada di antara...",
     options: [
-      "A. Perangkat keras yang mencetak dokumen fisik",
-      "B. Jembatan penerjemah dan pengelola antara pengguna, aplikasi, dan hardware",
-      "C. Aplikasi pengolah kata untuk membuat laporan tertulis",
-      "D. Kabel fisik penghubung arus listrik ke motherboard"
+      "A. Kabel penghubung daya listrik ke motherboard",
+      "B. Pengguna/aplikasi dan hardware fisik sebagai perantara serta pengelola sumber daya",
+      "C. Monitor dan kabel display sebagai pengubah resolusi gambar",
+      "D. Harddisk dan flashdisk sebagai penyaring virus otomatis"
     ],
     correct: 1,
-    explanation: "Sistem Operasi bertindak sebagai jembatan perantara (antarmuka) dan pengalokasi sumber daya antara pengguna, aplikasi, dan perangkat keras."
+    explanation: "Sistem Operasi bertindak sebagai jembatan perantara (antarmuka) dan manajer sumber daya antara pengguna/aplikasi software dengan perangkat keras fisik (CPU, RAM, Storage)."
   },
   {
+    modul: "Modul 1: Konsep Dasar",
+    question: "Pada materi modul, OS dianalogikan sebagai seorang 'dirigen orkestra' (konduktor musik). Alasan mendasar analogi tersebut adalah...",
+    options: [
+      "A. OS menghasilkan file rekaman suara berkualitas tinggi untuk setiap program komputer",
+      "B. OS memerlukan speaker dan audio eksternal agar seluruh fitur sistem dapat aktif",
+      "C. OS menyelaraskan kerja komponen CPU, RAM, dan Storage agar harmonis tanpa benturan",
+      "D. OS berfungsi menggantikan peran pengguna dalam menentukan seluruh isi file"
+    ],
+    correct: 2,
+    explanation: "Analogi dirigen musik menggambarkan peran OS dalam mengoordinasikan berbagai instrumen hardware komputer (CPU ibarat biola, RAM ibarat drum, storage ibarat trompet) agar bekerja harmonis tanpa konflik."
+  },
+  {
+    modul: "Modul 1: Konsep Dasar",
+    question: "Salah satu dari 3 tujuan utama perancangan Sistem Operasi adalah 'Ability to Evolve' (Kemampuan Berkembang), yang bermakna bahwa...",
+    options: [
+      "A. Komputer dapat menggandakan kapasitas RAM fisik sendiri tanpa membeli komponen baru",
+      "B. Sistem Operasi mampu mengubah bentuk fisik laptop menjadi smartphone secara otomatis",
+      "C. Seluruh file pengguna akan otomatis terhapus setiap kali komputer dimatikan",
+      "D. OS dapat diperbarui dan ditambah fungsionalitas baru secara modular tanpa merusak layanan yang ada"
+    ],
+    correct: 3,
+    explanation: "Tujuan 'Ability to Evolve' berarti OS dibangun secara modular sehingga pembaruan sistem, patch keamanan, dan driver baru dapat dipasang tanpa mengganggu stabilitas layanan yang sedang berjalan."
+  },
+
+  // Modul 2: Karakteristik Utama OS (3 Soal)
+  {
     modul: "Modul 2: Karakteristik",
-    question: "Fitur yang memungkinkan pengguna mendengarkan musik di Spotify sambil mengetik tugas di Word secara bersamaan dinamakan...",
+    question: "Fitur yang memungkinkan pengguna mendengarkan musik di Spotify sambil mengetik tugas di Word dan mengunduh berkas secara bersamaan dinamakan...",
     options: [
       "A. Concurrency (Multitasking)",
       "B. Monolithic Single-task",
-      "C. Manual Interrupt",
+      "C. Manual Hardware Interrupt",
       "D. Batch Processing Murni"
     ],
     correct: 0,
-    explanation: "Concurrency / Multitasking adalah kemampuan OS mengeksekusi banyak proses secara bersamaan melalui pembagian irisan waktu CPU yang cepat."
+    explanation: "Concurrency (Multitasking) adalah kemampuan OS mengeksekusi banyak proses secara bersamaan melalui pembagian irisan waktu CPU (time slicing) yang sangat cepat."
+  },
+  {
+    modul: "Modul 2: Karakteristik",
+    question: "Di laboratorium komputer, puluhan laptop mahasiswa dapat mengirim antrean dokumen ke satu unit printer fisik secara teratur tanpa benturan data. Hal ini merupakan wujud karakteristik...",
+    options: [
+      "A. Dedicated Hardware Monopoly",
+      "B. Resource Sharing (Berbagi Sumber Daya)",
+      "C. Single-User Isolation",
+      "D. Asynchrony Interruption"
+    ],
+    correct: 1,
+    explanation: "Resource Sharing memungkinkan berbagai pengguna atau proses memanfaatkan perangkat keras yang sama (RAM, printer, GPU) secara aman dan tertib tanpa memicu konflik."
+  },
+  {
+    modul: "Modul 2: Karakteristik",
+    question: "Ketika memori RAM fisik hampir penuh saat membuka aplikasi berat, OS meminjam sebagian ruang Harddisk/SSD sebagai memori semu. Konsep ini merupakan contoh penerapan pilar...",
+    options: [
+      "A. Manual Overclocking",
+      "B. Direct Hardware Flashing",
+      "C. Virtualization (Memori Virtual)",
+      "D. Static System Freeze"
+    ],
+    correct: 2,
+    explanation: "Virtualization menyembunyikan keterbatasan fisik perangkat keras. Dalam Memori Virtual, ruang disk disulap menjadi perpanjangan RAM agar sistem tetap stabil meski RAM fisik penuh."
+  },
+
+  // Modul 3: 4 Fungsi Utama OS (3 Soal)
+  {
+    modul: "Modul 3: Fungsi Utama",
+    question: "Fungsi OS yang bertugas mengatur alokasi giliran waktu pemrosesan CPU untuk tiap aplikasi yang berjalan adalah...",
+    options: [
+      "A. Manajemen Sistem Berkas (File System)",
+      "B. Manajemen Resolusi Layar Sentuh",
+      "C. Manajemen Catu Daya Baterai Laptop",
+      "D. Manajemen Proses (CPU Scheduling)"
+    ],
+    correct: 3,
+    explanation: "Manajemen proses bertugas mengatur penjadwalan CPU (CPU scheduling) agar seluruh aplikasi mendapat giliran komputasi secara adil dan terhindar dari kondisi deadlock."
   },
   {
     modul: "Modul 3: Fungsi Utama",
-    question: "Fungsi OS yang bertugas mengatur alokasi waktu pemrosesan CPU untuk tiap aplikasi yang berjalan adalah...",
+    question: "Pada manajemen memori utama (RAM), mengapa Sistem Operasi harus melakukan dealokasi (deallocation) saat suatu aplikasi ditutup pengguna?",
     options: [
-      "A. Manajemen Sistem Berkas (File System)",
-      "B. Manajemen Proses (CPU Scheduling)",
-      "C. Manajemen Layar Sentuh",
-      "D. Manajemen Catu Daya Baterai"
+      "A. Mencegah kebocoran memori (memory leak) dan membebaskan RAM untuk program lain",
+      "B. Menambah kapasitas penyimpanan harddisk secara permanen",
+      "C. Menghapus akun admin komputer secara otomatis demi keamanan",
+      "D. Mengubah memori RAM menjadi chip prosesor baru"
+    ],
+    correct: 0,
+    explanation: "Dealokasi memori bertugas membersihkan dan mengembalikan blok RAM yang sebelumnya dipakai program yang telah selesai, mencegah terjadinya memory leak yang memperlambat PC."
+  },
+  {
+    modul: "Modul 3: Fungsi Utama",
+    question: "Ketika memasang perangkat keras baru seperti webcam atau printer, komponen apakah yang berfungsi sebagai penerjemah komunikasi antara OS dan hardware tersebut?",
+    options: [
+      "A. Bootloader Firmware",
+      "B. Device Driver",
+      "C. File Allocation Table (FAT)",
+      "D. CMOS Battery Register"
     ],
     correct: 1,
-    explanation: "Manajemen proses bertugas mengatur penjadwalan CPU (CPU scheduling) agar seluruh aplikasi mendapat giliran komputasi secara adil."
+    explanation: "Device Driver adalah modul perangkat lunak khusus yang menjembatani perintah dari sistem operasi agar dimengerti oleh periferal perangkat keras eksternal."
+  },
+
+  // Modul 4: Jenis-Jenis OS (3 Soal)
+  {
+    modul: "Modul 4: Jenis-Jenis OS",
+    question: "Sistem operasi generasi awal di mana tugas-tugas serupa dikumpulkan dalam satu berkas kelompok lalu dieksekusi berurutan tanpa interaksi pengguna adalah...",
+    options: [
+      "A. Time-Sharing Multitasking OS",
+      "B. Mobile Touchscreen OS",
+      "C. Batch Processing OS",
+      "D. Real-Time OS (RTOS)"
+    ],
+    correct: 2,
+    explanation: "Batch Processing OS mengumpulkan sejumlah pekerjaan sejenis ke dalam satu kelompok (batch) untuk diproses secara berurutan tanpa interaksi tatap muka langsung dari pengguna."
   },
   {
     modul: "Modul 4: Jenis-Jenis OS",
-    question: "Sistem Operasi yang memiliki batas tenggat waktu sangat ketat dan diaplikasikan pada navigasi pesawat terbang atau peralatan medis adalah...",
+    question: "Sistem Operasi yang memiliki batas tenggat waktu amat ketat (zero-latency) dan diaplikasikan pada navigasi pesawat tempur, satelit, atau peralatan medis adalah...",
     options: [
-      "A. Batch Processing OS",
-      "B. Distributed Network OS",
-      "C. Real-Time OS (RTOS)",
-      "D. Single-user DOS"
+      "A. Komputer kasir toko buku dan aplikasi pengolah kata",
+      "B. Website blog pribadi dan sistem pemutar film rumahan",
+      "C. Aplikasi pengunduh musik di smartphone",
+      "D. Autopilot pesawat tempur, navigasi roket, dan kendali medis kritis (RTOS)"
     ],
-    correct: 2,
-    explanation: "Real-Time OS (RTOS) menjamin proses dieksekusi tepat waktu dalam batas milidetik ketat demi mencegah kegagalan sistem krusial."
+    correct: 3,
+    explanation: "Real-Time OS (RTOS) menjamin pemrosesan selesai dalam batas waktu yang kaku (milidetik). Keterlambatan respon dapat berakibat fatal pada keselamatan fisik sistem."
+  },
+  {
+    modul: "Modul 4: Jenis-Jenis OS",
+    question: "Sistem Operasi yang mengoordinasikan sekumpulan komputer fisik yang terhubung jaringan agar bekerja sama seolah-olah menjadi satu komputer raksasa adalah...",
+    options: [
+      "A. Distributed OS (Sistem Operasi Terdistribusi)",
+      "B. Standalone DOS 16-bit",
+      "C. Embedded Firmware",
+      "D. Single-User Legacy System"
+    ],
+    correct: 0,
+    explanation: "Distributed OS mengintegrasikan sumber daya komputasi dari banyak node komputer dalam jaringan sehingga tampak transparan sebagai satu kesatuan sistem bagi pengguna."
+  },
+
+  // Modul 5: Desktop OS vs Mobile OS (3 Soal)
+  {
+    modul: "Modul 5: Desktop vs Mobile",
+    question: "Berdasarkan perbandingan di Modul 5, perbedaan mendasar antara karakteristik Desktop OS (Windows/macOS) dan Mobile OS (Android/iOS) adalah...",
+    options: [
+      "A. Desktop OS tidak mendukung tampilan warna grafis, sedangkan Mobile OS sudah berwarna",
+      "B. Desktop OS dirancang untuk mouse presisi & multi-window, sedangkan Mobile OS dioptimasi untuk layar sentuh & gestur usapan",
+      "C. Mobile OS tidak menggunakan komponen prosesor maupun memori RAM",
+      "D. Desktop OS tidak dapat digunakan untuk mengakses internet sama sekali"
+    ],
+    correct: 1,
+    explanation: "Desktop OS ditujukan untuk produktivitas dengan kendali mouse presisi, keyboard fisik, dan jendela leluasa, sedangkan Mobile OS dirancang fleksibel untuk sentuhan jari dan gestur layar sentuh."
   },
   {
     modul: "Modul 5: Desktop vs Mobile",
-    question: "Salah satu perbedaan utama sistem operasi Mobile (Android/iOS) dibandingkan Desktop (Windows/macOS) adalah...",
+    question: "Mengapa sistem operasi Mobile (Android/iOS) menerapkan manajemen daya yang sangat agresif dengan membekukan (freeze) aplikasi di latar belakang?",
     options: [
-      "A. Mobile OS tidak membutuhkan memori RAM sama sekali",
-      "B. Mobile OS memiliki manajemen daya yang sangat agresif demi menghemat baterai",
-      "C. Desktop OS tidak dapat memutar file audio atau video",
-      "D. Mobile OS hanya bisa dijalankan menggunakan keyboard kabel"
+      "A. Karena smartphone tidak memiliki ruang penyimpanan internal",
+      "B. Mencegah layar ponsel dari bahaya radiasi cahaya biru",
+      "C. Menghemat daya baterai yang terbatas agar perangkat dapat bertahan digunakan seharian",
+      "D. Menghapus kode program aplikasi setiap kali pengguna berpindah menu"
     ],
-    correct: 1,
-    explanation: "Mobile OS dirancang sangat hemat daya dan agresif membekukan (freeze) aplikasi di latar belakang agar daya baterai bertahan seharian."
+    correct: 2,
+    explanation: "Perangkat mobile bertumpu pada daya baterai yang terbatas. Oleh karena itu, OS secara agresif menonaktifkan atau membekukan proses latar belakang demi efisiensi konsumsi daya."
+  },
+  {
+    modul: "Modul 5: Desktop vs Mobile",
+    question: "Pada infrastruktur pusat data (Data Center) dan komputasi awan skala besar, jenis sistem operasi yang diandalkan untuk menopang ribuan rak server secara 24/7 adalah...",
+    options: [
+      "A. Mobile OS khusus jam tangan anak-anak",
+      "B. OS berbasis kaset pita magnetik retro",
+      "C. Single-Tasking DOS tanpa koneksi jaringan",
+      "D. Server OS berstandar Enterprise (seperti Linux Server & Windows Server)"
+    ],
+    correct: 3,
+    explanation: "Infrastruktur Cloud dan Data Center bertumpu pada Server OS (seperti Linux Enterprise dan Windows Server) yang dibekali ketahanan 24/7 (fault tolerance), virtualisasi tingkat lanjut, dan stabilitas tinggi."
   }
 ];
 
@@ -103,6 +232,7 @@ export default function Home() {
   // Quiz state
   const [quizIndex, setQuizIndex] = useState(0);
   const [quizScore, setQuizScore] = useState(0);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [answeredIndex, setAnsweredIndex] = useState<number | null>(null);
   const [quizFinished, setQuizFinished] = useState(false);
 
@@ -326,6 +456,7 @@ export default function Home() {
   const resetQuiz = () => {
     setQuizIndex(0);
     setQuizScore(0);
+    setCorrectAnswersCount(0);
     setAnsweredIndex(null);
     setQuizFinished(false);
   };
@@ -337,7 +468,11 @@ export default function Home() {
     const isCorrect = idx === quizData[quizIndex].correct;
     if (isCorrect) {
       playSound('success');
-      setQuizScore((prev) => prev + Math.round(100 / quizData.length));
+      setCorrectAnswersCount((prev) => {
+        const nextCount = prev + 1;
+        setQuizScore(Math.round((nextCount / quizData.length) * 100));
+        return nextCount;
+      });
     } else {
       playSound('fail');
     }
@@ -350,7 +485,8 @@ export default function Home() {
       setAnsweredIndex(null);
     } else {
       setQuizFinished(true);
-      const isPassed = (quizScore + (answeredIndex === quizData[quizIndex].correct ? 0 : 0)) >= 70;
+      const finalScore = Math.round((correctAnswersCount / quizData.length) * 100);
+      const isPassed = finalScore >= 70;
       if (isPassed) {
         playSound('fanfare');
       } else {
@@ -2025,7 +2161,7 @@ export default function Home() {
                         onClick={handleNextQuiz}
                         className="btn-bounce px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-xs flex items-center gap-1.5 ml-auto"
                       >
-                        Soal Berikutnya →
+                        {quizIndex + 1 < quizData.length ? 'Soal Berikutnya →' : 'Selesai & Cek Hasil 🏁'}
                       </button>
                     </div>
                   </div>
@@ -2059,17 +2195,24 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="inline-flex items-center gap-6 px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200">
-                  <div>
-                    <div className="text-3xl font-black text-slate-900">{quizScore}</div>
-                    <div className="text-[11px] font-semibold text-slate-500 uppercase">Nilai Akhir</div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 max-w-xl mx-auto">
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                    <div className="text-2xl sm:text-3xl font-black text-emerald-600">{correctAnswersCount}</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase mt-0.5">Jawaban Benar</div>
                   </div>
-                  <div className="h-8 w-[1px] bg-slate-200"></div>
-                  <div>
-                    <div className={`text-3xl font-black ${quizScore >= 70 ? 'text-emerald-600' : 'text-rose-500'}`}>
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                    <div className="text-2xl sm:text-3xl font-black text-rose-500">{quizData.length - correctAnswersCount}</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase mt-0.5">Jawaban Salah</div>
+                  </div>
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                    <div className="text-2xl sm:text-3xl font-black text-slate-900">{quizScore}</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase mt-0.5">Nilai Akhir</div>
+                  </div>
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                    <div className={`text-xl sm:text-2xl font-black ${quizScore >= 70 ? 'text-emerald-600' : 'text-rose-500'}`}>
                       {quizScore >= 70 ? 'LULUS' : 'BELUM LULUS'}
                     </div>
-                    <div className="text-[11px] font-semibold text-slate-500 uppercase">Status Kelulusan</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase mt-0.5">Status (KKM 70)</div>
                   </div>
                 </div>
 

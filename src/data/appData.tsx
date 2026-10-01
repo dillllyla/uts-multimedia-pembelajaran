@@ -122,59 +122,178 @@ export type QuizQuestion = {
 };
 
 export const quizQuestions: QuizQuestion[] = [
+  // Modul 1
   {
-    q: "Apa fungsi utama Sistem Operasi bagi pengguna dan komputer?",
+    q: "Dalam arsitektur sistem komputer, posisi dan peran utama Sistem Operasi (OS) berada di antara...",
     options: [
-      "Sebagai jembatan antarmuka antara pengguna, aplikasi, dan perangkat keras.",
-      "Sebagai aplikasi untuk mengedit foto dan video secara otomatis.",
-      "Sebagai perangkat keras utama untuk menyimpan memori permanen.",
-      "Sebagai kabel penghubung daya listrik ke CPU."
-    ],
-    answer: 0,
-    explanation: "Sistem Operasi bertindak sebagai lapisan perantara (interface) antara aplikasi/pengguna dengan hardware fisik."
-  },
-  {
-    q: "Karakteristik OS yang memungkinkan pemrosesan beberapa tugas secara bersamaan disebut...",
-    options: [
-      "Virtualization",
-      "Concurrency (Multitasking)",
-      "Asynchrony",
-      "Paging"
+      "Kabel penghubung daya listrik ke motherboard",
+      "Pengguna/aplikasi dan hardware fisik sebagai perantara serta pengelola sumber daya",
+      "Monitor dan kabel display sebagai pengubah resolusi gambar",
+      "Harddisk dan flashdisk sebagai penyaring virus otomatis"
     ],
     answer: 1,
-    explanation: "Concurrency / Multitasking memungkinkan beberapa proses dieksekusi dalam jangka waktu yang seolah-olah bersamaan."
+    explanation: "Sistem Operasi bertindak sebagai jembatan perantara (antarmuka) dan manajer sumber daya antara pengguna/aplikasi software dengan perangkat keras fisik (CPU, RAM, Storage)."
   },
   {
-    q: "Komponen hardware manakah yang dikelola langsung oleh OS untuk alokasi memori sementara?",
+    q: "Pada materi modul, OS dianalogikan sebagai seorang 'dirigen orkestra' (konduktor musik). Alasan mendasar analogi tersebut adalah...",
     options: [
-      "Harddisk Drive (HDD)",
-      "Power Supply",
-      "Random Access Memory (RAM)",
-      "Monitor Display"
+      "OS menghasilkan file rekaman suara berkualitas tinggi untuk setiap program komputer",
+      "OS memerlukan speaker dan audio eksternal agar seluruh fitur sistem dapat aktif",
+      "OS menyelaraskan kerja komponen CPU, RAM, dan Storage agar harmonis tanpa benturan",
+      "OS berfungsi menggantikan peran pengguna dalam menentukan seluruh isi file"
     ],
     answer: 2,
-    explanation: "Fungsi Manajemen Memori OS berfokus pada alokasi dan deolokasi ruang memori utama (RAM)."
+    explanation: "Analogi dirigen musik menggambarkan peran OS dalam mengoordinasikan berbagai instrumen hardware komputer agar bekerja harmonis tanpa konflik."
   },
   {
-    q: "Manakah di bawah ini yang merupakan contoh Sistem Operasi khusus Mobile?",
+    q: "Salah satu dari 3 tujuan utama perancangan Sistem Operasi adalah 'Ability to Evolve' (Kemampuan Berkembang), yang bermakna bahwa...",
     options: [
-      "Windows 11 & macOS",
-      "Android & iOS",
-      "Ubuntu Linux & Debian",
-      "MS-DOS & RedHat"
+      "Komputer dapat menggandakan kapasitas RAM fisik sendiri tanpa membeli komponen baru",
+      "Sistem Operasi mampu mengubah bentuk fisik laptop menjadi smartphone secara otomatis",
+      "Seluruh file pengguna akan otomatis terhapus setiap kali komputer dimatikan",
+      "OS dapat diperbarui dan ditambah fungsionalitas baru secara modular tanpa merusak layanan yang ada"
     ],
-    answer: 1,
-    explanation: "Android dan iOS dirancang khusus untuk perangkat seluler seperti smartphone dan tablet."
+    answer: 3,
+    explanation: "Tujuan 'Ability to Evolve' berarti OS dibangun secara modular sehingga pembaruan sistem dapat dipasang tanpa mengganggu stabilitas layanan yang sedang berjalan."
   },
+
+  // Modul 2
   {
-    q: "Salah satu tujuan utama pengembangan Sistem Operasi adalah 'Convenience', yang artinya...",
+    q: "Fitur yang memungkinkan pengguna mendengarkan musik di Spotify sambil mengetik tugas di Word dan mengunduh berkas secara bersamaan dinamakan...",
     options: [
-      "Menjadikan penggunaan komputer terasa lebih mudah dan intuitif.",
-      "Menghemat konsumsi arus listrik pada komponen RAM.",
-      "Membuat harga perangkat keras komputer menjadi murah.",
-      "Menghapus semua file bekas secara otomatis setiap menit."
+      "Concurrency (Multitasking)",
+      "Monolithic Single-task",
+      "Manual Hardware Interrupt",
+      "Batch Processing Murni"
     ],
     answer: 0,
-    explanation: "Convenience bertujuan untuk memberikan kenyamanan dan kemudahan bagi manusia saat mengoperasikan sistem komputer."
+    explanation: "Concurrency (Multitasking) adalah kemampuan OS mengeksekusi banyak proses secara bersamaan melalui pembagian irisan waktu CPU (time slicing) yang sangat cepat."
+  },
+  {
+    q: "Di laboratorium komputer, puluhan laptop mahasiswa dapat mengirim antrean dokumen ke satu unit printer fisik secara teratur tanpa benturan data. Hal ini merupakan wujud karakteristik...",
+    options: [
+      "Dedicated Hardware Monopoly",
+      "Resource Sharing (Berbagi Sumber Daya)",
+      "Single-User Isolation",
+      "Asynchrony Interruption"
+    ],
+    answer: 1,
+    explanation: "Resource Sharing memungkinkan berbagai pengguna atau proses memanfaatkan perangkat keras yang sama secara aman dan tertib tanpa memicu konflik."
+  },
+  {
+    q: "Ketika memori RAM fisik hampir penuh saat membuka aplikasi berat, OS meminjam sebagian ruang Harddisk/SSD sebagai memori semu. Konsep ini merupakan contoh penerapan pilar...",
+    options: [
+      "Manual Overclocking",
+      "Direct Hardware Flashing",
+      "Virtualization (Memori Virtual)",
+      "Static System Freeze"
+    ],
+    answer: 2,
+    explanation: "Virtualization menyembunyikan keterbatasan fisik perangkat keras. Ruang disk disulap menjadi perpanjangan RAM semu agar sistem tetap stabil."
+  },
+
+  // Modul 3
+  {
+    q: "Fungsi OS yang bertugas mengatur alokasi giliran waktu pemrosesan CPU untuk tiap aplikasi yang berjalan adalah...",
+    options: [
+      "Manajemen Sistem Berkas (File System)",
+      "Manajemen Resolusi Layar Sentuh",
+      "Manajemen Catu Daya Baterai Laptop",
+      "Manajemen Proses (CPU Scheduling)"
+    ],
+    answer: 3,
+    explanation: "Manajemen proses bertugas mengatur penjadwalan CPU (CPU scheduling) agar seluruh aplikasi mendapat giliran komputasi secara adil dan terhindar dari deadlock."
+  },
+  {
+    q: "Pada manajemen memori utama (RAM), mengapa Sistem Operasi harus melakukan dealokasi (deallocation) saat suatu aplikasi ditutup pengguna?",
+    options: [
+      "Mencegah kebocoran memori (memory leak) dan membebaskan RAM untuk program lain",
+      "Menambah kapasitas penyimpanan harddisk secara permanen",
+      "Menghapus akun admin komputer secara otomatis demi keamanan",
+      "Mengubah memori RAM menjadi chip prosesor baru"
+    ],
+    answer: 0,
+    explanation: "Dealokasi memori bertugas membersihkan dan mengembalikan blok RAM yang sebelumnya dipakai program yang telah selesai, mencegah terjadinya memory leak."
+  },
+  {
+    q: "Ketika memasang perangkat keras baru seperti webcam atau printer, komponen apakah yang berfungsi sebagai penerjemah komunikasi antara OS dan hardware tersebut?",
+    options: [
+      "Bootloader Firmware",
+      "Device Driver",
+      "File Allocation Table (FAT)",
+      "CMOS Battery Register"
+    ],
+    answer: 1,
+    explanation: "Device Driver adalah modul perangkat lunak khusus yang menjembatani perintah dari sistem operasi agar dimengerti oleh periferal perangkat keras eksternal."
+  },
+
+  // Modul 4
+  {
+    q: "Sistem operasi generasi awal di mana tugas-tugas serupa dikumpulkan dalam satu berkas kelompok lalu dieksekusi berurutan tanpa interaksi pengguna adalah...",
+    options: [
+      "Time-Sharing Multitasking OS",
+      "Mobile Touchscreen OS",
+      "Batch Processing OS",
+      "Real-Time OS (RTOS)"
+    ],
+    answer: 2,
+    explanation: "Batch Processing OS mengumpulkan sejumlah pekerjaan sejenis ke dalam satu kelompok (batch) untuk diproses secara berurutan tanpa interaksi tatap muka langsung pengguna."
+  },
+  {
+    q: "Sistem Operasi yang memiliki batas tenggat waktu amat ketat (zero-latency) dan diaplikasikan pada navigasi pesawat tempur, satelit, atau peralatan medis adalah...",
+    options: [
+      "Komputer kasir toko buku dan aplikasi pengolah kata",
+      "Website blog pribadi dan sistem pemutar film rumahan",
+      "Aplikasi pengunduh musik di smartphone",
+      "Autopilot pesawat tempur, navigasi roket, dan kendali medis kritis (RTOS)"
+    ],
+    answer: 3,
+    explanation: "Real-Time OS (RTOS) menjamin pemrosesan selesai dalam batas waktu yang kaku (milidetik). Keterlambatan respon dapat berakibat fatal pada keselamatan fisik sistem."
+  },
+  {
+    q: "Sistem Operasi yang mengoordinasikan sekumpulan komputer fisik yang terhubung jaringan agar bekerja sama seolah-olah menjadi satu komputer raksasa adalah...",
+    options: [
+      "Distributed OS (Sistem Operasi Terdistribusi)",
+      "Standalone DOS 16-bit",
+      "Embedded Firmware",
+      "Single-User Legacy System"
+    ],
+    answer: 0,
+    explanation: "Distributed OS mengintegrasikan sumber daya komputasi dari banyak node komputer dalam jaringan sehingga tampak transparan sebagai satu kesatuan sistem bagi pengguna."
+  },
+
+  // Modul 5
+  {
+    q: "Berdasarkan perbandingan di Modul 5, perbedaan mendasar antara karakteristik Desktop OS (Windows/macOS) dan Mobile OS (Android/iOS) adalah...",
+    options: [
+      "Desktop OS tidak mendukung tampilan warna grafis, sedangkan Mobile OS sudah berwarna",
+      "Desktop OS dirancang untuk mouse presisi & multi-window, sedangkan Mobile OS dioptimasi untuk layar sentuh & gestur usapan",
+      "Mobile OS tidak menggunakan komponen prosesor maupun memori RAM",
+      "Desktop OS tidak dapat digunakan untuk mengakses internet sama sekali"
+    ],
+    answer: 1,
+    explanation: "Desktop OS ditujukan untuk produktivitas dengan kendali mouse presisi, keyboard fisik, dan multi-window, sedangkan Mobile OS dioptimasi untuk layar sentuh dan gestur usapan."
+  },
+  {
+    q: "Mengapa sistem operasi Mobile (Android/iOS) menerapkan manajemen daya yang sangat agresif dengan membekukan (freeze) aplikasi di latar belakang?",
+    options: [
+      "Karena smartphone tidak memiliki ruang penyimpanan internal",
+      "Mencegah layar ponsel dari bahaya radiasi cahaya biru",
+      "Menghemat daya baterai yang terbatas agar perangkat dapat bertahan digunakan seharian",
+      "Menghapus kode program aplikasi setiap kali pengguna berpindah menu"
+    ],
+    answer: 2,
+    explanation: "Perangkat mobile bertumpu pada daya baterai yang terbatas. Oleh karena itu, OS secara agresif menonaktifkan atau membekukan proses latar belakang demi efisiensi konsumsi daya."
+  },
+  {
+    q: "Pada infrastruktur pusat data (Data Center) dan komputasi awan skala besar, jenis sistem operasi yang diandalkan untuk menopang ribuan rak server secara 24/7 adalah...",
+    options: [
+      "Mobile OS khusus jam tangan anak-anak",
+      "OS berbasis kaset pita magnetik retro",
+      "Single-Tasking DOS tanpa koneksi jaringan",
+      "Server OS berstandar Enterprise (seperti Linux Server & Windows Server)"
+    ],
+    answer: 3,
+    explanation: "Infrastruktur Cloud dan Data Center bertumpu pada Server OS yang dibekali ketahanan 24/7 (fault tolerance), virtualisasi tingkat lanjut, dan stabilitas tinggi."
   }
 ];
