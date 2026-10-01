@@ -383,33 +383,56 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2.5">
               <button 
                 onClick={handleToggleSound} 
-                className="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 hover:text-brand-600 transition flex items-center gap-1.5 text-xs font-semibold shadow-xs"
+                className="p-2 sm:p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 hover:text-brand-600 transition flex items-center gap-1.5 text-xs font-semibold shadow-xs"
+                title="Aktifkan / Matikan Efek Suara"
               >
                 {soundEnabled ? (
                   <svg className="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
                 ) : (
                   <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
                 )}
-                <span className="hidden sm:inline">Suara: {soundEnabled ? 'ON' : 'OFF'}</span>
+                <span className="hidden lg:inline">Suara: {soundEnabled ? 'ON' : 'OFF'}</span>
               </button>
 
               <button 
                 onClick={() => { playSound('click'); setShowHelpModal(true); }}
-                className="p-2.5 rounded-xl border border-sky-200 bg-sky-50 hover:bg-sky-100 text-brand-700 transition flex items-center gap-1.5 text-xs font-bold shadow-xs"
+                className="p-2 sm:p-2.5 rounded-xl border border-sky-200 bg-sky-50 hover:bg-sky-100 text-brand-700 transition flex items-center gap-1.5 text-xs font-bold shadow-xs"
+                title="Bantuan & Petunjuk Penggunaan"
               >
                 <span className="text-base">🤖</span>
-                <span className="hidden sm:inline">Bantuan & Bot-OS</span>
+                <span className="hidden sm:inline">Bantuan</span>
               </button>
 
               <button 
                 onClick={() => navigate('dashboard')} 
-                className="hidden md:flex px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-sky-500 text-white font-bold text-xs shadow-md shadow-brand-500/20 hover:from-brand-700 hover:to-sky-600 transition items-center gap-1.5"
+                className="hidden md:flex px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-200 transition items-center gap-1.5 shadow-2xs"
+                title="Buka Peta Materi (Dashboard)"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                Peta Materi
+                <svg className="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                <span>Peta Materi</span>
+              </button>
+
+              {/* Tombol START (Kembali ke Awal) */}
+              <button 
+                onClick={() => navigate('mulai')} 
+                className="btn-bounce px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-extrabold text-xs shadow-md shadow-sky-500/20 transition flex items-center gap-1"
+                title="START: Kembali ke Layar Awal Mulai"
+              >
+                <span className="text-sm">🏁</span>
+                <span className="tracking-wide">START</span>
+              </button>
+
+              {/* Tombol END (Menuju Titik Akhir / Selesai) */}
+              <button 
+                onClick={() => navigate('selesai')} 
+                className="btn-bounce px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-extrabold text-xs shadow-md shadow-rose-500/20 transition flex items-center gap-1"
+                title="END: Menuju Titik Akhir (Layar Selesai & Sertifikat)"
+              >
+                <span className="text-sm">🛑</span>
+                <span className="tracking-wide">END</span>
               </button>
             </div>
           </div>
@@ -547,7 +570,7 @@ export default function Home() {
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                 <button 
                   onClick={() => navigate('tp')}
-                  className="btn-bounce w-full sm:w-auto px-7 py-4 bg-white text-slate-800 border-2 border-slate-200 hover:border-brand-400 font-bold text-base rounded-2xl shadow-sm hover:bg-sky-50/50 transition-all flex items-center justify-center gap-2.5"
+                  className="btn-bounce w-full sm:w-auto px-6 py-4 bg-white text-slate-800 border-2 border-slate-200 hover:border-brand-400 font-bold text-base rounded-2xl shadow-sm hover:bg-sky-50/50 transition-all flex items-center justify-center gap-2.5"
                 >
                   <svg className="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
                   Tujuan Pembelajaran
@@ -555,10 +578,13 @@ export default function Home() {
 
                 <button 
                   onClick={() => navigate('dashboard')}
-                  className="btn-bounce w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-accent-orange to-amber-500 hover:from-accent-orangeHover hover:to-amber-600 text-white font-extrabold text-lg rounded-2xl shadow-lg shadow-orange-500/30 transition-all flex items-center justify-center gap-3"
+                  className="btn-bounce w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-accent-orange to-amber-500 hover:from-accent-orangeHover hover:to-amber-600 text-white font-extrabold text-lg rounded-2xl shadow-lg shadow-orange-500/30 transition-all flex items-center justify-center gap-3 group"
                 >
+                  <span className="px-2.5 py-0.5 bg-white/25 rounded-lg text-xs font-mono font-black tracking-wider uppercase border border-white/30 shadow-inner">
+                    START 🏁
+                  </span>
                   <span>Mulai Belajar!</span>
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                  <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                 </button>
               </div>
 
@@ -2058,8 +2084,9 @@ export default function Home() {
                       </button>
                       <button 
                         onClick={() => navigate('selesai')}
-                        className="btn-bounce px-8 py-3.5 bg-gradient-to-r from-accent-orange to-amber-500 hover:from-accent-orangeHover hover:to-amber-600 text-white font-extrabold text-base rounded-2xl shadow-lg shadow-orange-500/30 flex items-center gap-2"
+                        className="btn-bounce px-8 py-3.5 bg-gradient-to-r from-accent-orange to-amber-500 hover:from-accent-orangeHover hover:to-amber-600 text-white font-extrabold text-base rounded-2xl shadow-lg shadow-orange-500/30 flex items-center gap-2.5"
                       >
+                        <span className="px-2.5 py-0.5 bg-white/25 rounded-md text-xs font-mono font-black border border-white/30 shadow-inner">END 🏁</span>
                         <span>Klaim Sertifikat Kelulusan</span>
                         <span>🏆</span>
                       </button>
@@ -2311,17 +2338,18 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 no-print">
               <button 
                 onClick={() => window.print()}
-                className="btn-bounce w-full sm:w-auto px-7 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-2xl shadow-md shadow-brand-500/20 flex items-center justify-center gap-2"
+                className="btn-bounce w-full sm:w-auto px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-2xl shadow-md shadow-emerald-500/20 flex items-center justify-center gap-2.5"
               >
+                <span className="px-2.5 py-0.5 bg-white/20 rounded-md text-xs font-mono font-black border border-white/30">END 🏆</span>
+                <span>Cetak / Simpan PDF</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                Cetak / Simpan PDF
               </button>
               <button 
                 onClick={() => navigate('mulai')}
-                className="btn-bounce w-full sm:w-auto px-7 py-3.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-sm rounded-2xl shadow-xs flex items-center justify-center gap-2"
+                className="btn-bounce w-full sm:w-auto px-7 py-3.5 bg-white border-2 border-slate-300 hover:border-brand-400 hover:bg-sky-50/50 text-slate-700 font-bold text-sm rounded-2xl shadow-xs flex items-center justify-center gap-2.5"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                Mulai Penjelajahan Baru
+                <span className="px-2.5 py-0.5 bg-slate-100 border border-slate-200 rounded-md text-xs font-mono font-extrabold text-slate-700">END / REPEAT 🔄</span>
+                <span>Selesai Sesi (Mulai Baru)</span>
               </button>
             </div>
           </section>

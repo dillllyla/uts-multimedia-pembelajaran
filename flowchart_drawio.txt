@@ -1,0 +1,39 @@
+graph TD
+    START(["START: Pengguna Membuka Website OS-Explorer"]) --> Hero["1. Layar Mulai (Hero Screen)<br/>- Maskot Byte-Bot & Sambutan Suara<br/>- Showcase Perangkat Komputer"]
+
+    Hero -->|"Klik Tujuan Pembelajaran"| TP["2. Layar Tujuan Pembelajaran (TP)<br/>- Capaian Pembelajaran (CP)<br/>- 4 Indikator Kompetensi"]
+    Hero -->|"Klik Mulai Belajar!"| Dashboard["3. Layar Peta Materi (Dashboard)<br/>- Banner Penjelajahan Siswa<br/>- Pelacak Progres 0/5 Modul<br/>- Status Kesiapan Kuis"]
+    TP -->|"Klik Lanjut ke Peta Materi"| Dashboard
+
+    Dashboard -->|"Buka Modul 1"| M1["4. Modul 1: Konsep & Peran OS<br/>- Diagram 3 Layer Hardware/OS/App<br/>- Analogi Konduktor Musik<br/>- 3 Tujuan Pokok OS"]
+    Dashboard -->|"Buka Modul 2"| M2["5. Modul 2: Karakteristik OS<br/>- Concurrency Multitasking<br/>- Resource Sharing<br/>- Virtual Memory Abstraction<br/>- Asynchrony & Interrupt"]
+    Dashboard -->|"Buka Modul 3"| M3["6. Modul 3: Fungsi Utama OS<br/>- CPU Scheduling Proses<br/>- Alokasi Memori RAM Fisik<br/>- Sistem Berkas File System<br/>- Keamanan & Device Driver"]
+    Dashboard -->|"Buka Modul 4"| M4["7. Modul 4: Jenis-Jenis OS<br/>- Batch Processing OS<br/>- Time-Sharing Multitasking<br/>- Distributed Systems<br/>- Network OS NOS<br/>- Real-Time OS RTOS"]
+    Dashboard -->|"Buka Modul 5"| M5["8. Modul 5: Desktop vs Mobile OS<br/>- Komparasi PC vs Smartphone<br/>- Tabel Perbandingan Fitur<br/>- Galeri Industri NOC & Pabrik"]
+
+    M1 -->|"Lanjut Modul 2"| M2
+    M2 -->|"Lanjut Modul 3"| M3
+    M3 -->|"Lanjut Modul 4"| M4
+    M4 -->|"Lanjut Modul 5"| M5
+
+    M2 -.->|"Tonton Simulasi"| Sim["Laboratorium Simulasi Video & Suara<br/>1. Simulasi Multitasking<br/>2. Simulasi Berbagi Printer<br/>3. Simulasi Memori Virtual<br/>4. Simulasi Interupsi Video"]
+    Sim -.->|"Tutup Simulasi"| M2
+
+    M5 -->|"Lanjut Kuis Evaluasi"| Quiz["9. Layar Kuis Evaluasi<br/>- Mengerjakan 5 Soal Pemahaman<br/>- Koreksi Benar/Salah Instan<br/>- Kotak Pembahasan Konsep"]
+    Dashboard -->|"Akses Cepat Kuis"| Quiz
+
+    Quiz --> CalcScore["Rekap Skor Akhir"]
+    CalcScore --> CheckKKM{"Apakah Nilai >= 70?<br/>Standar KKM"}
+
+    CheckKKM -->|"Tidak (Skor < 70)"| FailResult["Status: Belum Lulus KKM<br/>- Review Jawaban Salah<br/>- Saran Belajar Ulang"]
+    FailResult -->|"Ulangi Kuis"| Quiz
+    FailResult -->|"Buka Peta Materi"| Dashboard
+
+    CheckKKM -->|"Ya (Skor >= 70)"| PassResult["Status: Lulus Memuaskan!<br/>- Hak Klaim Sertifikat Terbuka"]
+
+    PassResult -->|"Klaim Sertifikat"| Certificate["10. Layar Selesai & Sertifikat<br/>- Animasi Konfeti Kelulusan<br/>- Input Nama Lengkap Siswa<br/>- Lembar Sertifikat Ber-ID Resmi"]
+
+    Certificate -->|"Cetak / Simpan PDF"| END_SUCCESS(["END: Sertifikat Resmi Berhasil Diunduh/Dicetak"])
+    Certificate -->|"Kembali ke Beranda"| END_REPEAT(["END: Selesai Sesi Belajar"])
+
+    END_REPEAT -.->|"Mulai Sesi Baru"| Hero
